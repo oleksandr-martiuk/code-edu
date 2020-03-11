@@ -7,6 +7,8 @@ function sherlockAndAnagrams(s) {
         result += getResultForStrNum(s, subStrLen);
     }
 
+    console.log('=====================================================================')
+
     return result;
 }
 
