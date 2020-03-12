@@ -7,15 +7,10 @@ function sherlockAndAnagrams(s) {
         result += getResultForStrNum(s, subStrLen);
     }
 
-    console.log('=====================================================================')
-
     return result;
 }
 
 const getResultForStrNum = (s, strLen) => {
-    for (let i = 0; i < i.length; i++) {
-
-    }
-
+    // for (let i = 0; i < i.length; i++) {}
     return 1;
 };
