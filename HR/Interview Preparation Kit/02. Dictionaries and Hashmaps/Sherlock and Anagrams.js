@@ -11,6 +11,8 @@ function sherlockAndAnagrams(s) {
 }
 
 const getResultForStrNum = (s, strLen) => {
-    // for (let i = 0; i < i.length; i++) {}
+    for (let i = 0; i < i.length; i++) {
+      
+    }
     return 1;
 };
