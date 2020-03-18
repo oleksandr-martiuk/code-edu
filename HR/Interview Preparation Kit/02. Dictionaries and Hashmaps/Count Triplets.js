@@ -1,2 +1,4 @@
 // Complete the countTriplets function below.
-function countTriplets(arr, r) {}
+function countTriplets(arr, r) {
+  // another comment ;)
+}
