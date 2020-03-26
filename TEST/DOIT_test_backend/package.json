@@ -1,0 +1,14 @@
+{
+  "name": "test",
+  "version": "0.0.1",
+  "description": "test task for BackEnd developer",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martiuk Oleksandr",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
