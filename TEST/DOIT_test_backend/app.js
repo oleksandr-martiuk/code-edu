@@ -35,18 +35,21 @@ const readFile = async (filePath) => {
 }
 
 app.post('/upload', async (req, res) => {
-    const { fileName: name, fileExt: ext } = req.query;
-    console.log('req.params: ', req.query);
-
-    const filePath = __dirname + `/${name}.${ext}`;
-    console.log('File path: ', filePath);
+    const folderName = 'flash_files';
+    const { fileName } = req.query;
+    const filePath =  __dirname + `/${folderName}` + `/${fileName}.txt`;
 
     const strData = await readFile(filePath);
 
-    // TODO: (next step) ---> implement parsing for string for such file
+    // TODO #01: (next step) ---> implement parsing for string for such file
     const result = strData.split('|');
+
+    // TODO #02: connect to DataBase
+    // TODO #03: create model for saving data to MongoDB
+    // TODO #04: 
+    // TODO #05: 
 
     res.send({ message: result });
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
