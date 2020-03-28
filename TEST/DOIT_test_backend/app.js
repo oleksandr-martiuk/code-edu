@@ -46,8 +46,8 @@ app.post('/upload', async (req, res) => {
 
     // TODO #02: connect to DataBase
     // TODO #03: create model for saving data to MongoDB
-    // TODO #04: 
-    // TODO #05: 
+    // TODO #04: save data
+    // TODO #05: add TESTS for checking whether data exists by TEST-points
 
     res.send({ message: result });
 })
