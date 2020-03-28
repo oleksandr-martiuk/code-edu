@@ -49,6 +49,8 @@ app.post('/upload', async (req, res) => {
     // TODO #04: save data
     // TODO #05: add TESTS for checking whether data exists by TEST-points
 
+    // just testing comment
+
     res.send({ message: result });
 })
 
