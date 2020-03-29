@@ -4,7 +4,7 @@
   "description": "DOIT: node.js test task",
   "main": "app.js",
   "scripts": {
-    "start": "node -r esm app.js",
+    "start": "node -r esm app",
     "test": ""
   },
   "author": "Martiuk Oleksandr",
