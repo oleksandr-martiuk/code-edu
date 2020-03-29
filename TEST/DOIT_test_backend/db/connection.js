@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { DB_URL } = require('../config.mjs');
+const { DB_URL } = require('../config');
 
 export const connect = () => {
     const dbConfigs = {
