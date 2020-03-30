@@ -1,20 +1,21 @@
 import {Router} from 'express';
 export const router = Router();
 
-import File from '../../services/patient/file';
+import File from '../../services/file';
+import Patient from '../../services/patient';
 
 router.post('/', async (req, res, next) => {
-    console.log(`I'm in the /PATIENTS endpoints`);
-
     try {
         const { fileName } = req.query;
         const file = new File(fileName, 'txt');
-        const records = await file.getPatientRecords();
+        const patient = new Patient();
 
-        // TODO #03: create model for saving data to MongoDB
-        // TODO #04: save data
-        // TODO #05: add TESTS for checking whether data exists by TEST-points
+        const fileData = await file.getLocalData();
+        const records = patient.getParsedRecords(fileData)
 
+        await patient.createMultiple(records);
+
+        res.statusCode = 201;
         res.send({ message: records });
     } catch (error) {
         return next(error);

@@ -1,11 +1,12 @@
-const mongoose = require('mongoose');
-const { DB_URL } = require('../config');
+import mongoose from 'mongoose';
+import { DB_URL, DB_PORT } from '../config';
 
-export const connect = () => {
+export default (() => {
     const dbConfigs = {
         useUnifiedTopology: true,
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useCreateIndex: true
     };
 
-    mongoose.connect(DB_URL, dbConfigs, () => console.log(`Connected to the DataBase: ${DB_URL}`));
-}
+    mongoose.connect(DB_URL, dbConfigs, () => console.log(`DataBase connected on port ${DB_PORT}`));
+})

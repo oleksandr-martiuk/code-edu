@@ -1,41 +1,10 @@
-import fs from 'fs';
-import {root} from '../../init-paths'
-import {FLASH_FOLDER_NAME} from '../../config'
+import PatientModel from '../db/models/patient';
 
-export default class File {
-    constructor(name, ext) {
-        this.filePath =  root + `/${FLASH_FOLDER_NAME}` + `/${name}.${ext}`;
-    }
-
-    async getPatientRecords () {
-        const fileData = await this.getLocalData();
-        const records = this.getParsedPatients(fileData);
-
-        return records;
-    }
-
-    async getLocalData () {
-        try {
-            const readStream = fs.createReadStream(this.filePath);
-    
-            return new Promise((resolve, reject) => {
-                const chunks = [];
-    
-                readStream
-                    .on('data', chunk => chunks.push(chunk))
-                    .on('error', reject)
-                    .on('end', () => resolve(Buffer.concat(chunks).toString('utf8')))
-            });
-        } catch(err) {
-            console.log('Error in reading of the patients local file');
-            return err.statusCode;
-        }
-    }
-
-    getParsedPatients (patientStrs) {
+export default class Patient {
+    getParsedRecords (strData) {
         // TODO: (Error) Add error-handler when data of patient does not exist
         try {
-            const dataRows = patientStrs.split('\n');
+            const dataRows = strData.split('\n');
             const records = [];
 
             for (let i = 1; i < dataRows.length; i++) {
@@ -69,5 +38,29 @@ export default class File {
             err.message = 'Error in parsing data from the file of the patient records';
             throw err;
         }        
+    }
+
+    async createMultiple(patients) {
+        return await PatientModel.insertMany(patients, async (err, result) => {
+            if (err) throw err;
+            return 'Patients created';
+        });
+    }
+
+    async getByParams(params = {}) {
+        const patients = await PatientModel.find(params, async (err, result) => {
+            if (err) throw err;
+            return result;
+        });
+
+        return patients;
+    }
+
+    getEmails(patients) {
+        const emails = patients
+            .filter(patient => !!patient.contacts.emailAddress)
+            .map(patient => patient.contacts.emailAddress);
+
+        return emails;
     }
 }
