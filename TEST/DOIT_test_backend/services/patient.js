@@ -1,7 +1,7 @@
 import PatientModel from '../db/models/patient';
 
 export default class Patient {
-    getParsedRecords (strData) {
+    parseRecords (strData) {
         // TODO: (Error) Add error-handler when data of patient does not exist
         try {
             const dataRows = strData.split('\n');

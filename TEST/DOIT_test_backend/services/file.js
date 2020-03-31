@@ -7,7 +7,7 @@ export default class File {
         this.filePath =  root + `/${FILE_FOLDER_NAME}` + `/${name}.${ext}`;
     }
 
-    async getLocalData() {
+    async read() {
         try {
             const readStream = fs.createReadStream(this.filePath);
     

@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const {Schema, model} = mongoose;
+import {Schema, model} from 'mongoose';
 
 const emailSchema = Schema({
     "email"     : { type: String, required: true },
@@ -8,3 +7,6 @@ const emailSchema = Schema({
 });
 
 export default model('Email', emailSchema);
+
+// ---> 'PATIENT' ----> must be unique
+// ---> create relations between 'PATIENT' & 'EMAIL'
