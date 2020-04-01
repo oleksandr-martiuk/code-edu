@@ -1,70 +1,79 @@
-import chai, {expect} from 'chai';
-import should from 'should';
+import chai from 'chai';
 import DB from '../db/connection';
-import {AppApi} from './libs/app-api';
-import File from '../services/file';
-import Patient from '../services/patient';
+import {AppApi, TestHelper} from './libs/test-helper';
 
-const file = new File('testfile', 'txt');
-const patient = new Patient();
-const appApi = new AppApi();
-const db = new DB();
+var expect  = require('chai').expect;  // TODO: ?
+chai.should();  // TODO: ?
 
-// --------------------------------------------------------------------------------------
+chai.use(require('chai-like'));
+chai.use(require('chai-things'));
 
-let patientRecords = [];
-const getData = async() => {
-    await db.connect();
-    patientRecords = await appApi.getAllPatients();
-    await db.close();
+const testFile = {
+    name: 'testfile',
+    ext: 'txt'
 }
 
-const test = () => {
-    // before(async function() {
-    //     console.log('(---BEFORE---) patientRecords.length ---> ', patientRecords.length);
-    // })
-    // after(async () => )
-    describe('DESCRIBE #1', function() {
-        patientRecords.forEach((record, index) => {
-            console.log('(INSIDE) patientRecords.length ---> ', patientRecords.length);
-            it(`${index} test:`, () => {
-                expect(5).eql(5);
+const db = new DB();
+const appApi = new AppApi();
+const testHelper = new TestHelper(testFile);
+
+describe('FIRST DESCRIPTION:', function(){
+    let fileRecords = [];
+
+    before(async function(){
+        await db.connect();
+        fileRecords = await testHelper.getFileRecords();
+    })
+
+    describe('SECOND DESCRIPTION:', function(){
+        it('1-st test', function() {
+            expect(5).to.eql(5);
+        })
+
+        it("'flat_file' includes records for the DataBase", function(){
+            expect(fileRecords).to.have.length(18);
+
+            describe("1. The data in 'flat_file' matches the data in PATIENT collection", function(){
+                const recordKeys = ['_id', '__v', 'address', 'contacts', 'firstName', 'lastName', 'birthDay', 'consent'];
+
+                fileRecords.forEach(function(record, index){
+                    const {firstName, lastName, consent} = record;
+
+                    it(`Element #${index+1} (${firstName + " " + lastName}) in the 'testfile.txt' exists in the DataBase`, async function(){
+                        const recordConfigs = {firstName, lastName, consent};
+                        const patientRecord = await appApi.getPatientsByParams(recordConfigs);
+
+                        expect(patientRecord).to.has.length(1);
+                        // patientRecord.should.have.properties(recordKeys);
+                        // expect(patientRecord[0]).to.have.all.keys(...recordKeys);
+                        // expect(patientRecord[0]).has.all.keys('_id', '__v', 'address', 'contacts', 'firstName', 'lastName', 'birthDay', 'consent');
+                        // expect(patientRecord[0]).includes.all.keys('_id', '__v', 'address', 'contacts', 'firstName', 'lastName', 'birthDay', 'consent', "firstAddress", "secondAddress", "city", "state", "zipCode", "telephoneNumber", "mobilePhone","emailAddress");
+                        console.log(JSON.stringify(patientRecord[0]));
+                        expect(patientRecord[0]).to.have.keys('_id', '__v', 'address', 'contacts', 'firstName', 'lastName', 'birthDay', 'consent');
+                        console.log('----------------------------------------------------------------------')
+                        // console.log(JSON.stringify(patientRecord[0]));
+                    })
+                })
+            })
+
+
+
+            after(async function(){
+                db.close();
             })
         })
-    })
-}
-    
-describe('DESCRIBE #2', function() {
-    it('Some another test', () => {
-        expect(5).eql(5);
+
+        // it('3-st test', function() {
+        //     expect(5).to.eql(5);
+        // })
+
+        // it('4-st test', function() {
+        //     expect(5).to.eql(5);
+        // })
     })
 })
 
-(async () => {
-    await getData();
-    test();
-})();
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-// describe('FIRST DESCRIBE', () => {
-//     console.log('1. patientRecords.length ---> ', patientRecords.length);
-//     it('START test', () => {
-//         expect(5).eql(5);
-//     })
-
-//     describe('DESCRIBE #2', () => {
-//         console.log('2. patientRecords.length ---> ', patientRecords.length);
-//         patientRecords.forEach((record, index) => {
-//             it(`${index} test:`, () => {
-//                 expect(5).eql(5);
-//             })
-//             console.log('7');
-//         })
-//     })
-// })
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
 
 // 1. Verify the data in 'flat_file' matches the data in PATIENT collection
 // -----> сравнить информацию из ФАЙЛА с БАЗОЙ ДАННЫХ

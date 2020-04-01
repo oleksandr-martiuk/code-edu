@@ -3,15 +3,15 @@ import {Schema, model} from 'mongoose';
 const patientSchema = Schema({
     "firstName" : { type: String, default: "" },
     "lastName"  : { type: String, default: "" },
-    "birth"     : { type: Date, default: null },
-    "address" : {
+    "birthDay"  : { type: Date, default: null },
+    "address"   : {
         "firstAddress"      : { type: String, default: "" },
         "secondAddress"     : { type: String, default: "" },
         "city"              : { type: String, default: "" },
         "state"             : { type: String, default: "" },
         "zipCode"           : { type: Number, default: null },
     },
-    "contacts": {
+    "contacts"  : {
         "telephoneNumber"   : { type: String, default: "" },
         "mobilePhone"       : { type: String, default: "" },
         "emailAddress"      : { type: String, default: "" }

@@ -14,7 +14,7 @@ export default class Patient {
                 const patient = {
                     "firstName"         : row[4],
                     "lastName"          : row[5],
-                    "birth"             : row[6],
+                    "birthDay"          : row[6],
                     "address" : {
                         "firstAddress"      : row[7],
                         "secondAddress"     : row[8],
