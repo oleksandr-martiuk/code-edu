@@ -1,4 +1,4 @@
-export const APP_PORT = process.env.APP_PORT || 8080;
+export const APP_PORT = process.env.APP_PORT || 9091;
 
 const DB_HOST = process.env.DB_HOST || 'localhost';
 const DB_NAME = process.env.DB_NAME || 'doit_test_db';

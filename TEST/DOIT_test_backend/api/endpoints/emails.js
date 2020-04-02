@@ -14,10 +14,10 @@ router.post('/', async (req, res, next) => {
         const patients = await patientService.getByParams({consent: true});
         const patientEmails = patientService.getPatientEmails(patients);
 
-        const result = await emailService.createMultiple(dates, patientEmails, template);
+        const emailResults = await emailService.createMultiple(dates, patientEmails, template);
 
         res.statusCode = 201;
-        res.send({ message: result });
+        res.send({ message: emailResults });
     } catch (error) {
         return next(error);
     }

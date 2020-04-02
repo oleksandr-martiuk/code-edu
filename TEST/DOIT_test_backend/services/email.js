@@ -16,10 +16,7 @@ export default class Email {
 
     const records = emailRecords.flat();
 
-    return await EmailModel.insertMany(records, async (err, emails) => {
-      if (err) throw err;
-      return emails;
-    });
+    return await EmailModel.insertMany(records);
   }
 
   genDateEmails(date, patientEmails, content) {
