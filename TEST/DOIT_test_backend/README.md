@@ -12,16 +12,15 @@ npm install
 npm start
 ```
 
-Run next requests by using Postman
-* or by using any convinient tool you like the most
+Run next requests by using Postman (or any tool for HTTP requests):
 
-```bash
-[{ POST }] http://localhost:8080/api/patients?fileName=testfile
+```
+1. { **POST** } http://localhost:8080/api/patients?fileName=testfile
 ```
 
-```bash
-[{ POST }] http://localhost:8080/api/emails
-BODY {
+```
+2. { **POST** } --http://localhost:8080/api/emails--
+**BODY:** {
     "template": "Hello patient!",
     "dates": [
         "2020-04-01",
@@ -35,6 +34,6 @@ BODY {
 
 ## Testing
 
-```bash
+```
 npm test
 ```
