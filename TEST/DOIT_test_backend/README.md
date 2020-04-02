@@ -19,7 +19,7 @@ Run next requests by using Postman (or any tool for HTTP requests):
 ```
 
 ```
-2. { POST } --http://localhost:8080/api/emails--
+2. { POST } http://localhost:8080/api/emails
 BODY: {
     "template": "Hello patient!",
     "dates": [
