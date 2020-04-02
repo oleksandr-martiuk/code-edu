@@ -15,11 +15,11 @@ npm start
 Run next requests by using Postman (or any tool for HTTP requests):
 
 ```
-1. { POST } http://localhost:8080/api/patients?fileName=testfile
+1. { POST } http://localhost:9091/api/patients?fileName=testfile
 ```
 
 ```
-2. { POST } http://localhost:8080/api/emails
+2. { POST } http://localhost:9091/api/emails
 BODY: {
     "template": "Hello patient!",
     "dates": [
