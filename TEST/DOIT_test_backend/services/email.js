@@ -1,33 +1,34 @@
 import EmailModel from '../db/models/email';
+import moment from 'moment';
 
 export default class Email {
-  async createMultiple(dates, emails, content) {
+  async createMultiple(dates, patientEmails, content) {
     const emailRecords = [];
 
-    for (let i = 0; i < dates.length; i++) {
-      const date = dates[i];
-      const dateEmails = this.genDateEmails(date, emails, content)
+    for (let date of dates) {
+      if (!moment(date, "YYYY-MM-DD").isValid()) {
+        throw Error("Please provide correct format of date (YYYY-MM-DD)")
+      };
+
+      const dateEmails = this.genDateEmails(date, patientEmails, content)
       emailRecords.push(dateEmails);
     }
 
     const records = emailRecords.flat();
 
-    // TODO: could be added Error handler for record already exists
-
-    await EmailModel.insertMany(records, async (err) => {
+    return await EmailModel.insertMany(records, async (err, emails) => {
       if (err) throw err;
-      return 'Emails created';
+      return emails;
     });
   }
 
-  genDateEmails(date, emails, content) {
-    const dateEmails = [];
-
-    for (let y = 0; y < emails.length; y++) {
-      const email = emails[y];
-      const record = { email, content, date };
-      dateEmails.push(record);
-    }
+  genDateEmails(date, patientEmails, content) {
+    const dateEmails = patientEmails.map(patientEmail => ({
+      email: patientEmail.email,
+      patientId: patientEmail.patientId,
+      date,
+      content
+    }));
 
     return dateEmails;
   }

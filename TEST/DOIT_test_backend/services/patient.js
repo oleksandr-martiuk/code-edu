@@ -2,7 +2,6 @@ import PatientModel from '../db/models/patient';
 
 export default class Patient {
     parseRecords (strData) {
-        // TODO: (Error) Add error-handler when data of patient does not exist
         try {
             const dataRows = strData.split('\n');
             const records = [];
@@ -56,11 +55,16 @@ export default class Patient {
         return patients;
     }
 
-    getEmails(patients) {
-        const emails = patients
+    getPatientEmails(patients) {
+        const patientEmails = patients
             .filter(patient => !!patient.contacts.emailAddress)
-            .map(patient => patient.contacts.emailAddress);
+            .map(patient => {
+                return {
+                    email: patient.contacts.emailAddress,
+                    patientId: patient._id
+                }
+            });
 
-        return emails;
+        return patientEmails;
     }
 }

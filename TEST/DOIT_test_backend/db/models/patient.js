@@ -20,6 +20,3 @@ const patientSchema = Schema({
 });
 
 export default model('Patient', patientSchema);
-
-// ---> 'PATIENT' ----> must be unique
-// ---> create relations between 'PATIENT' & 'EMAIL'

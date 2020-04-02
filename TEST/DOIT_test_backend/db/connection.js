@@ -13,6 +13,6 @@ export default class DB {
     }
 
     close = () => {
-        mongoose.connection.close(() => 'DB is closed!');
+        mongoose.connection.close(() => 'DB is closed');
     }
 }

@@ -12,12 +12,12 @@ router.post('/', async (req, res, next) => {
         const { dates, template } = req.body;
 
         const patients = await patientService.getByParams({consent: true});
-        const emails = patientService.getEmails(patients);
+        const patientEmails = patientService.getPatientEmails(patients);
 
-        await emailService.createMultiple(dates, emails, template);
+        const result = await emailService.createMultiple(dates, patientEmails, template);
 
         res.statusCode = 201;
-        res.send({ message: 'Emails created' });
+        res.send({ message: result });
     } catch (error) {
         return next(error);
     }

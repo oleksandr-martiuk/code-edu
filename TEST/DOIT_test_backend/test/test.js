@@ -1,34 +1,43 @@
-import chai from 'chai';
+import {expect} from 'chai';
+import moment from 'moment';
 import DB from '../db/connection';
-import {AppApi, TestHelper} from './libs/test-helper';
-
-var expect  = require('chai').expect;  // TODO: ?
-chai.should();  // TODO: ?
-
-chai.use(require('chai-like'));
-chai.use(require('chai-things'));
+import {AppApi, TestHelper} from './libs/helper';
 
 const testFile = {
     name: 'testfile',
     ext: 'txt'
 }
+const testDates = [
+    "2020-04-01",
+    "2020-04-02",
+    "2020-04-03",
+    "2020-04-04",
+    "2020-04-05"
+]
 
 const db = new DB();
 const appApi = new AppApi();
 const testHelper = new TestHelper(testFile);
 
 describe('FIRST DESCRIPTION:', function(){
-    let fileRecords = [];
+    let fileRecords = [],
+        allEmails = [],
+        emptyNamePatients = [],
+        emptyEmailPatients = [],
+        patientEmails = [];
 
     before(async function(){
         await db.connect();
         fileRecords = await testHelper.getFileRecords();
+
+        emptyNamePatients = await appApi.getPatientsByParams({firstName: ""});
+        emptyEmailPatients = await appApi.getPatientsByParams({'contacts.emailAddress': {$in: ""}, consent: true});
+        patientEmails = await appApi.getPatientEmails();
+
+        allEmails = await appApi.getEmailsByParams();
     })
 
-    describe('SECOND DESCRIPTION:', function(){
-        it('1-st test', function() {
-            expect(5).to.eql(5);
-        })
+    describe('DOIT test task:', function(){
 
         it("'flat_file' includes records for the DataBase", function(){
             expect(fileRecords).to.have.length(18);
@@ -37,59 +46,59 @@ describe('FIRST DESCRIPTION:', function(){
                 const recordKeys = ['_id', '__v', 'address', 'contacts', 'firstName', 'lastName', 'birthDay', 'consent'];
 
                 fileRecords.forEach(function(record, index){
-                    const {firstName, lastName, consent} = record;
+                    const {firstName, lastName, birthDay} = record;
 
-                    it(`Element #${index+1} (${firstName + " " + lastName}) in the 'testfile.txt' exists in the DataBase`, async function(){
-                        const recordConfigs = {firstName, lastName, consent};
-                        const patientRecord = await appApi.getPatientsByParams(recordConfigs);
-
+                    it(`Record of the element #${index+1} (${firstName + " " + lastName}) from the '${testFile.name}.${testFile.ext}' exists in the DataBase`, async function(){
+                        const patientRecord = await appApi.getPatientsByParams({firstName, lastName, birthDay});
                         expect(patientRecord).to.has.length(1);
-                        // patientRecord.should.have.properties(recordKeys);
-                        // expect(patientRecord[0]).to.have.all.keys(...recordKeys);
-                        // expect(patientRecord[0]).has.all.keys('_id', '__v', 'address', 'contacts', 'firstName', 'lastName', 'birthDay', 'consent');
-                        // expect(patientRecord[0]).includes.all.keys('_id', '__v', 'address', 'contacts', 'firstName', 'lastName', 'birthDay', 'consent', "firstAddress", "secondAddress", "city", "state", "zipCode", "telephoneNumber", "mobilePhone","emailAddress");
-                        console.log(JSON.stringify(patientRecord[0]));
-                        expect(patientRecord[0]).to.have.keys('_id', '__v', 'address', 'contacts', 'firstName', 'lastName', 'birthDay', 'consent');
-                        console.log('----------------------------------------------------------------------')
-                        // console.log(JSON.stringify(patientRecord[0]));
                     })
                 })
             })
-
-
 
             after(async function(){
                 db.close();
             })
         })
-
-        // it('3-st test', function() {
-        //     expect(5).to.eql(5);
-        // })
-
-        // it('4-st test', function() {
-        //     expect(5).to.eql(5);
-        // })
     })
+
+    describe('...', function(){
+        it('...', function() {
+
+            describe('2. Patient IDs where "first name" is missing:', function(){
+                emptyNamePatients.forEach(record => {
+                    it(`Patient (ID='${record._id}') has an empty "First Name"`, function(){
+                        expect(record.firstName).to.be.empty;
+                    })
+                })
+            })
+
+            describe('3. Patient IDs where "Email address" is missing but consent is Y:', function(){
+                emptyEmailPatients.forEach(record => {
+                    it(`Patient (ID='${record._id}') doesn't have an "Email Address" but consent is Y`, function(){
+                        expect(record.contacts.emailAddress).to.be.empty;
+                        expect(record.consent).is.true;
+                    })
+                })
+            })
+
+            describe(`4. "Emails" were created in "EMAIL" collection for PATIENTS who have "consent"='Y'`, function(){
+                patientEmails.forEach(patientRecord => {
+                    it(`Emails for the patient (ID='${patientRecord._id}') where created in the DataBase`, function(){
+                        expect(patientRecord.emailData).has.length.above(0);
+                    })
+                })
+            })
+
+            describe(`5. "Test dates" matches with the created for the patients`, function(){
+                patientEmails.forEach(patientRecord => {
+                    const emailDates = patientRecord.emailData.map(data => moment(data.date).format("YYYY-MM-DD"));
+                    it(`Emails dates for the patient (ID='${patientRecord._id}') matche with created in the DataBase`, function(){
+                        expect(emailDates).to.eql(testDates);
+                    })
+                })
+            })
+
+        })
+    })
+
 })
-
-// ----------------------------------------------------------------------------------------------------
-
-// 1. Verify the data in 'flat_file' matches the data in PATIENT collection
-// -----> сравнить информацию из ФАЙЛА с БАЗОЙ ДАННЫХ
-
-
-// 2. Patient IDs - where "first name" is missing
-// -----> показать ID пациентов, у которых 'first name' пропущено
-
-
-// 3. Patient IDs - "Email address" is missing but consent is Y
-// -----> показать ID пациентов, у которых 'Email address' пропущены
-
-
-// 4. Verify "Emails" were created in "EMAIL" collection for PATIENTS who have "consent"='Y'
-// -----> проверить были ли созданы письма в коллекции EMAIL для пациентов, у которых 'consent'='Y'
-
-
-// 5. Verify the "Email schedule" matches with the above.
-// -----> ???
