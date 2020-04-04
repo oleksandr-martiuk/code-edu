@@ -1,4 +1,3 @@
-// Complete the jumpingOnClouds function below.
 function jumpingOnClouds(c) {
     let [steps, i] = [0, 0];
     while (i < c.length - 1) {

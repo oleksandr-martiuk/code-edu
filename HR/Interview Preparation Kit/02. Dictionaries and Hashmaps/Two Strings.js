@@ -1,4 +1,3 @@
-// Complete the twoStrings function below.
 function twoStrings(s1, s2) {
     const s2arr = s2.split('');
     for (let i = 0; i < s1.length; i++) {
@@ -11,7 +10,6 @@ function twoStrings(s1, s2) {
 
 // -----------------------------------------------------------------------------
 
-// Complete the twoStrings function below.
 function twoStrings(s1, s2) {
     const s2arr = s2.split('');
 

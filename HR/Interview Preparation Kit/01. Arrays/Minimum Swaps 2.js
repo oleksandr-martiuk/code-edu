@@ -1,4 +1,3 @@
-// Complete the minimumSwaps function below.
 function minimumSwaps(arr) {
     let normI = -1;
     let swapCount = 0;

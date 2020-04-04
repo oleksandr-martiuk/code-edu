@@ -1,4 +1,3 @@
-// Complete the arrayManipulation function below.
 function arrayManipulation(n, queries) {
     let arr = new Array(n).fill(0);
 

@@ -1,5 +1,3 @@
-
-// Complete the sherlockAndAnagrams function below.
 function sherlockAndAnagrams(s) {
     let result = 0;
 

@@ -1,4 +1,3 @@
-// Complete the sockMerchant function below.
 function sockMerchant(n, ar) {
     let uniqueSocks = [];
     let pairCount = 0;

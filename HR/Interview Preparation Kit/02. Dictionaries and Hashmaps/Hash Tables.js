@@ -1,4 +1,3 @@
-// Complete the checkMagazine function below.
 function checkMagazine(magazine, note) {
     for (let n = 0; n < note.length; n++) {
         const magLen = magazine.length;

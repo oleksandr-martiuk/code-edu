@@ -1,4 +1,3 @@
-// Complete the minimumBribes function below.
 function minimumBribes(q) {
     const len = q.length;
     let result = 0;
@@ -15,8 +14,6 @@ function minimumBribes(q) {
             break;
         }
 
-
-        // q.splice(normI, 0, q.splice(currI, 1)[0]);
         const elem = q[currI];
         q.splice(currI, 1);
         q.splice(normI, 0, elem);
