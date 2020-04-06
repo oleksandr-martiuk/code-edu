@@ -1,0 +1,145 @@
+<div class="layout-pane coding-question__question-pane layout-pane--primary layout-pane--smooth">
+    <div class="layout-pane__container">
+    <div class="coding-question__left-pane">
+    <section>
+    <h1 class="question-view__title">2. Beautiful Subarrays</h1>
+    </section>
+    <section class="question-view__instruction">
+    <div class="candidate-rich-text">
+    <div id="e9qisrbbpkm-instruction">
+    <div class="ps-content-wrapper-v0">
+    <div class="preheader" style="display: none;">Count the number of subarrays having exactly <em>m</em> elements.</div>
+    <p>A <em>beautiful subarray</em>&nbsp;is defined as an array of any length having a specific number of odd elements.&nbsp; Given an array of integers and a number of odd elements that constitutes beauty,&nbsp;create as many <em>distinct beautiful subarrays</em> as possible.&nbsp;&nbsp;<em>Distinct</em>&nbsp;means the arrays do not share identical starting and ending indices, though they may share one of the two.</p>
+    <p>&nbsp;</p>
+    <p><strong>Example</strong></p>
+    <p>arr = <em>[1, 2, 3, 4, 5]</em></p>
+    <p><em>numOdds = 2</em></p>
+    <p>&nbsp;</p>
+    <p>the following beautiful subarrays can be formed:</p>
+    <p><em>[1, 2, 3]</em></p>
+    <p><em>[1, 2, 3, 4]</em></p>
+    <p><em>[2, 3, 4, 5] </em></p>
+    <p><em>[3, 4, 5]</em></p>
+    <p>&nbsp;</p>
+    <p><strong>Function Description </strong></p>
+    <p>Complete the function <em>beautifulSubarrays</em> in the editor below.</p>
+    <p>&nbsp;</p>
+    <p>beautifulSubarrays has the following parameter(s):</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;int <em>arr[n]:</em>&nbsp; an array integers</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;int <em>numOdds:</em>&nbsp; the number of odd elements considered <em>beautiful</em></p>
+    <p><em>Returns:</em></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;An integer number of beautiful subarrays.</p>
+    <p>&nbsp;</p>
+    <!--
+    <p>Complete the <em>beautifulSubarrays</em> function in the editor below. It has two parameters:</p>
+    
+    <table class="challenge-params">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th class="description">Description</th>
+            </tr>
+            <tr>
+                <td class="code">a</td>
+                <td class="code">integer array</td>
+                <td class="left">An array of <em>n</em> integers.</td>
+            </tr>
+            <tr>
+                <td class="code">m</td>
+                <td class="code">integer</td>
+                <td class="left">The number of odd elements to be present for an array to be beautiful</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p>The function must return a long integer denoting the total number of distinct beautiful subarrays.</p>
+    -->
+    <p><strong>Constraints</strong></p>
+    <ul>
+    <li><em>1 &le; n &le; 2 &times; 10<sup>5</sup></em></li>
+    <li><em>1 &le; arr[i] &le; 10<sup>9</sup></em>.</li>
+    <li>The array <em>a&nbsp;</em>consists of distinct positive integers.</li>
+    <li><em>0 &le; numOdds &le; 2 &times; 10<sup>5</sup></em></li>
+    </ul>
+    <p>&nbsp;</p>
+    <!--       <StartOfInputFormat> DO NOT REMOVE THIS LINE--> <details><summary class="section-title">Input Format for Custom Testing</summary>
+    <div class="collapsable-details">
+    <p>Input from stdin will be processed as follows and passed to the function.</p>
+    <p>&nbsp;</p>
+    <p>The first line contains an integer <em>n</em>, the size of the array <em>arr</em>.</p>
+    <p>The next <em>n</em> lines each contain an element <em>arr[i]</em>.</p>
+    <p>The next line contains an integer <em>numOdds</em>, the number of odd elements that constitutes beauty.</p>
+    </div>
+    </details> <details open="open"><summary class="section-title">Sample Case 0</summary>
+    <div class="collapsable-details">
+    <p class="section-title">Sample Input 0</p>
+    <pre>STDIN&nbsp;&nbsp;&nbsp;&nbsp; Function 
+    -----&nbsp;&nbsp;&nbsp;&nbsp; -------- 
+    4      &rarr;&nbsp; arr[] size n = 4
+    2      &rarr;  arr = [2,5,4,9]
+    5
+    4
+    9
+    1      &rarr;  numOdds = 1</pre>
+    <p class="section-title">Sample Output 0</p>
+    <pre>6</pre>
+    <p class="section-title">Explanation 0</p>
+    <p>Array <em>arr = [2, 5, 4, 9]</em> has six distinct beautiful subarrays with 1 odd element:</p>
+    <ol>
+    <li><em>arr[1..1] = [5]</em></li>
+    <li><em>arr[3..3] = [9]</em></li>
+    <li><em>arr[0..1] = [2, 5]</em></li>
+    <li><em>arr[1..2] = [5, 4]</em></li>
+    <li><em>arr[2..3] = [4, 9]</em></li>
+    <li><em>arr[0..2] = [2, 5, 4]</em></li>
+    </ol>
+    <p>&nbsp;</p>
+    </div>
+    </details> <details title="Click bar to open/close the example."><summary class="section-title">Sample Case 1</summary>
+    <div class="collapsable-details">
+    <p class="section-title">Sample Input 1</p>
+    <pre>STDIN&nbsp;&nbsp;&nbsp;&nbsp; Function
+    -----&nbsp;&nbsp;&nbsp;&nbsp; --------
+    4     &rarr;&nbsp;  arr[] size n = 4
+    2     &rarr;   arr = [2,5,4,9]
+    5
+    4
+    9
+    2    &rarr;    numOdds = 2</pre>
+    <p class="section-title">Sample Output 1</p>
+    <pre>2
+    </pre>
+    <p class="section-title">Explanation 1</p>
+    <p>Array <em>arr = [2, 5, 4, 9]</em> has <em>two</em> distinct beautiful subarrays:</p>
+    <ol>
+    <li><em>arr[1..3] = [5, 4, 9]</em></li>
+    <li><em>arr[0..3] = [2, 5, 4, 9]</em></li>
+    </ol>
+    <p>&nbsp;</p>
+    </div>
+    </details> <details title="Click bar to open/close the example."><summary class="section-title">Sample Case 2</summary>
+    <div class="collapsable-details">
+    <p class="section-title">Sample Input 2</p>
+    <pre>STDIN&nbsp;&nbsp;&nbsp;&nbsp; Function
+    -----&nbsp;&nbsp;&nbsp;&nbsp; --------
+    4     &rarr;&nbsp;  arr[] size n = 4
+    2     &rarr;   arr = [2,5,4,9]
+    5
+    4
+    9
+    3     &rarr;   numOdds = 3
+    </pre>
+    <p class="section-title">Sample Output 2</p>
+    <pre>0
+    </pre>
+    <p class="section-title">Explanation 2</p>
+    <p>There are only two odd elements in the array <em>[2, 5, 4, 9]&nbsp;</em>so the array has<em> 0</em>&nbsp;distinct beautiful subarrays of 3 odd elements.</p>
+    </div>
+    </details></div>
+    </div>
+    </div>
+    </section>
+    </div>
+    </div>
+    </div>

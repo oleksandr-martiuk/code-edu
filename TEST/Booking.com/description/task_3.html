@@ -1,0 +1,118 @@
+<div class="layout-pane coding-question__question-pane layout-pane--primary layout-pane--smooth">
+    <div class="layout-pane__container">
+    <div class="coding-question__left-pane">
+    <section>
+    <h1 class="question-view__title">3. Award Top K Hotels</h1>
+    </section>
+    <section class="question-view__instruction">
+    <div class="candidate-rich-text">
+    <div id="a7dg7m4dak2-instruction">
+    <div class="ps-content-wrapper-v0">
+    <p>At Booking.com we want to recognize <var><code>k</code> </var>performing hotels. We plan to identify these by analyzing their user reviews and calculating a review score for each of the hotel.</p>
+    <p>To calculate the score, we have:</p>
+    <p style="margin-left: 40px;"><em>a list of user reviews for each hotel, </em></p>
+    <p style="margin-left: 40px;"><em>a list of positive keywords and </em></p>
+    <p style="margin-left: 40px;"><em>a list of negative keywords. </em></p>
+    <p>Positive keywords weigh 3 points each and negative keywords weigh -1 each.</p>
+    &nbsp;
+    <p>For example, given the input below:</p>
+    <p style="margin-left: 40px;">positive keywords: "breakfast beach citycenter location metro view staff price",</p>
+    <p style="margin-left: 40px;">negative keywords: "not",</p>
+    <p style="margin-left: 40px;">number of hotels: m = 5,</p>
+    <p style="margin-left: 40px;">array of hotel ids: [1,2,1,1,2],</p>
+    <p style="margin-left: 40px;">number of reviews: n=5,</p>
+    <p style="margin-left: 40px;">array of reviews: [</p>
+    <p style="margin-left: 80px;">"This hotel has a nice view of the citycenter. The location is perfect.",&nbsp;</p>
+    <p style="margin-left: 80px;">"The breakfast is ok. Regarding location, it is quite far from citycenter but price is cheap so it is worth.",</p>
+    <p style="margin-left: 80px;">"Location is excellent, 5 minutes from citycenter. There is also a metro station very close to the hotel.",</p>
+    <p style="margin-left: 80px;">"They said I couldn't take my dog and there were other guests with dogs! That is not fair.",</p>
+    <p style="margin-left: 80px;">"Very friendly staff and good cost-benefit ratio. Its location is a bit far from citycenter."</p>
+    <p style="margin-left: 80px;">],</p>
+    <p style="margin-left: 40px;">number of hotels we want to award: k = 2,</p>
+    <p>then top k Hotels will be 2, 1.</p>
+    &nbsp;
+    <p class="section-title">Function Description</p>
+    <p>Complete the function <em>awardTopKHotels</em> in the editor below.</p>
+    <p>The function must return list of hotel ids sorted in <em>descending</em> order of their total score.</p>
+    <p>&nbsp;</p>
+    <p>awardTopKHotels has the following parameter(s):</p>
+    <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;<em>positiveKeywords:</em>&nbsp; a space separated string of positive keywords in review</p>
+    <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;<em>negativeKeywords :</em>&nbsp; a space separated string of negative keywords in review</p>
+    <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;<em>hotelIds[hotelIds[0]...hotelIds[m-1]] :</em>&nbsp; an array of integers, which represents hotel IDs</p>
+    <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;<em>reviews[reviews[0]...reviews[n-1]] :</em>&nbsp; an array of String, which represents reviews.</p>
+    <p style="margin-left: 80px;">reviews[i] is review for hotelIds[i]. reviews and hotelIds are one-to-one mapped.</p>
+    <p style="margin-left: 40px;">&nbsp;&nbsp;&nbsp;<em>k :</em>&nbsp;the number of hotels we want to award.</p>
+    <p style="margin-left: 40px;">&nbsp;</p>
+    <p class="section-title">Constraints</p>
+    <ul>
+    <li>m is always equal to n.</li>
+    <li>If two hotels have the same score, they should be sorted in the output based on their ID, smallest ID first.</li>
+    <li>The keywords to find will always be single words like "breakfast"&nbsp;or "noise". Never double words like "swimming pool".</li>
+    <li>Matching should be case-insensitive.</li>
+    <li>Dots and commas should be ignored.</li>
+    <li>If a word appears in a review twice, it should count twice.</li>
+    <li><em>1 &le; </em>m<em> &le; 10<sup>9</sup></em></li>
+    <li><em>1 &le; </em>n<em> &le; 10<sup>9</sup></em></li>
+    <li><em>1 &le; </em>hotelIds[i]<em> &le; 10<sup>5</sup></em></li>
+    <li><em>1 &le; </em>k<em> &le; 10<sup>9</sup></em></li>
+    <li>In case one or more test cases time out, consider revisiting the runtime complexity of your algorithms.</li>
+    <li>If k is greater than unique number of hotel ids, then list all the hotel ids</li>
+    </ul>
+    <p>&nbsp;</p>
+    <!-- <StartOfInputFormat> DO NOT REMOVE THIS LINE--> <details><summary class="section-title">Input Format For Custom Testing</summary>
+    <div class="collapsable-details">
+    <p>Input from stdin will be processed as follows and passed to the function.<br /> &nbsp;</p>
+    <p>The first line contains a sentence with space separated positive keywords.</p>
+    <p>The second line contains a sentence with space separated negative keywords.</p>
+    <p>The third line contains an integer M, the size of the array hotelIds.</p>
+    <p>The next M lines each contain an element hotelIds[i].</p>
+    <p>The next line contains an integer N, the size of the array reviews.</p>
+    <p>The next N lines each contain an element reviews[i]</p>
+    <p>The next line contains an integer K, number of hotels we want to award.</p>
+    </div>
+    </details> <!-- </StartOfInputFormat> DO NOT REMOVE THIS LINE--> <details open="open"><summary class="section-title">Sample Case 0</summary>
+    <div class="collapsable-details">
+    <p class="section-title">Sample Input For Custom Testing</p>
+    <pre>breakfast beach citycenter location metro view staff price
+    not
+    5
+    1
+    2
+    1
+    1
+    2
+    5
+    <small>This hotel has a nice view of the citycenter. The location is perfect.
+    The breakfast is ok. Regarding location, it is quite far from citycenter but price is cheap so it is worth.
+    Location is excellent, 5 minutes from citycenter. There is also a metro station very close to the hotel.
+    They said I couldn't take my dog and there were other guests with dogs! That is not fair.
+    Very friendly staff and good cost-benefit ratio. Its location is a bit far from citycenter.
+    2
+    </small></pre>
+    <p>&nbsp;</p>
+    <p class="section-title">Sample Output</p>
+    <pre>2
+    1</pre>
+    <p class="section-title">Explanation</p>
+    <p>Hotel 2 has a score of 21.</p>
+    <p>Score is calculated as follows,</p>
+    <ul>
+    <li>"location" and "citycenter" are mentioned twice each (score = 2 * 3 + 2 * 3 = 12), while</li>
+    <li>"breakfast", "price", and "staff" are mentioned once each (score = 12 + (1 * 3 + 1 * 3 + 1 * 3) = 21).&nbsp;</li>
+    </ul>
+    <p>&nbsp;</p>
+    <p>Hotel 1 on the other hand has a score of 17.</p>
+    <p>Score is calculated as follows,</p>
+    <ul>
+    <li>"location" and "citycenter" also twice each (score = 2 * 3 + 2 * 3 = 12)&nbsp;</li>
+    <li>"view" and "metro" once each (score = 12 + (1 * 3 + 1 * 3) = 18) and</li>
+    <li>&ldquo;not&rdquo; is once as well (score = 18 + (-1 * 1) = 17).</li>
+    </ul>
+    </div>
+    </details></div>
+    </div>
+    </div>
+    </section>
+    </div>
+    </div>
+    </div>
