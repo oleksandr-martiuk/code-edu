@@ -10,7 +10,6 @@
  *  5. INTEGER pageNumber
  */
 
-
 function fetchItemsToDisplay(items, sortParameter, sortOrder, itemsPerPage, pageNumber) {
     // console.log('sortParameter = ', sortParameter);
     // console.log('sortOrder = ', sortOrder);
