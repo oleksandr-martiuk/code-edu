@@ -20,3 +20,4 @@ const patientSchema = Schema({
 });
 
 export default model('Patient', patientSchema);
+
