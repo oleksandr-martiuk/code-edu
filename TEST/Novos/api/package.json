@@ -1,7 +1,7 @@
 {
-  "name": "test",
+  "name": "ttt",
   "version": "0.0.1",
-  "description": "DOIT: test task",
+  "description": "Novos: test technical task",
   "main": "app.js",
   "scripts": {
     "start": "node -r esm app",
@@ -12,12 +12,13 @@
   "dependencies": {
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "moment": "^2.24.0",
-    "mongoose": "^5.9.6"
+    "knex": "^0.21.0",
+    "pg": "^8.0.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^7.1.1",
+    "nodemon": "^2.0.3",
     "should": "^13.2.3"
   }
 }

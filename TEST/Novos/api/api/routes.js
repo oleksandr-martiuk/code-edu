@@ -1,8 +1,10 @@
 import {Router} from 'express';
 export const routes = Router();
 
-import {router as patients} from './endpoints/patients';
-import {router as emails} from './endpoints/emails';
+import {router as auth} from './endpoints/auth';
+import {router as tasks} from './endpoints/tasks';
+import {router as userTasks} from './endpoints/user-tasks';
 
-routes.use('/patients', patients);
-routes.use('/emails', emails);
+routes.use('/auth', auth);
+routes.use('/tasks', tasks);
+routes.use('/user-tasks', userTasks);
