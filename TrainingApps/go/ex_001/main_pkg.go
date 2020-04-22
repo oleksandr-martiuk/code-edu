@@ -1,10 +1,9 @@
 package main
 
-import "fmt"
-
 import {
 	"github.com/oleksandr-martiuk/code-edu/TrainingApps/ex_001/go/first"
 	"github.com/oleksandr-martiuk/code-edu/TrainingApps/ex_001/go/second"
+	"fmt"
 }
 
 func main() {
