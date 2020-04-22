@@ -1,24 +1,36 @@
-import {Router} from 'express';
-import DB from '../../services/lib/db/gateway';
+import { Router } from 'express';
+import AppDataLayer from '../../services/lib/app-data-layer';
+import User from '../../services/core/user';
 
 export const router = Router();
-const db = new DB();
+const dataLayer = new AppDataLayer();
 
 router.post('/login', async (req, res, next) => {
-    try {
-        const connection = await db.initGateway();
-        const users = await connection('users').select();
+    const dbConn = await dataLayer.createConnection();
 
-        res.send({ message: users });
+    try {
+        const { login, password } = req.body;
+
+        const userService = new User(dbConn);
+        const user = await userService.login({login, password});
+
+        res.send({ data: user });
     } catch (error) {
         return next(error);
+    } finally {
+        dataLayer.destroyConnection();
     }
 });
 
 router.post('/register', async (req, res, next) => {
     try {
-        res.send({ message: 'Auth: /register' });
+        const dbConn = await dataLayer.createConnection();
+        const users = await dbConn('users').select().first();
+
+        res.send({ data: users });
     } catch (error) {
         return next(error);
+    } finally {
+        dataLayer.destroyConnection();
     }
 });
