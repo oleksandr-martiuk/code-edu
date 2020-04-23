@@ -1,8 +1,8 @@
 package main
 
 import {
-	"github.com/oleksandr-martiuk/code-edu/TrainingApps/ex_001/go/first"
-	"github.com/oleksandr-martiuk/code-edu/TrainingApps/ex_001/go/second"
+	"github.com/oleksandr-martiuk/code-edu/TrainingApps/go/ex_001/first"
+	"github.com/oleksandr-martiuk/code-edu/TrainingApps/go/ex_001/second"
 	"fmt"
 }
 

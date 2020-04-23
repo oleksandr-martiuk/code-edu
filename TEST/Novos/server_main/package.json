@@ -1,7 +1,7 @@
 {
-  "name": "ttt",
+  "name": "2t",
   "version": "0.0.1",
-  "description": "Novos: test technical task",
+  "description": "technical task",
   "main": "app.js",
   "scripts": {
     "start": "node -r esm app",

@@ -12,9 +12,9 @@ router.post('/login', async (req, res, next) => {
         const { login, password } = req.body;
 
         const userService = new User(dbConn);
-        const user = await userService.login({login, password});
+        const token = await userService.login({login, password});
 
-        res.send({ data: user });
+        res.send({ 'token': token });
     } catch (error) {
         return next(error);
     } finally {
@@ -23,9 +23,13 @@ router.post('/login', async (req, res, next) => {
 });
 
 router.post('/register', async (req, res, next) => {
+    const dbConn = await dataLayer.createConnection();
+
     try {
-        const dbConn = await dataLayer.createConnection();
-        const users = await dbConn('users').select().first();
+        const { login, password } = req.body;
+
+        const userService = new User(dbConn);
+        const user = await userService.login({login, password});
 
         res.send({ data: users });
     } catch (error) {

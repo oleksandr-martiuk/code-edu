@@ -5,20 +5,31 @@ export default class Auth {
     constructor(connection){
         this.usersTable = connection('users');
     }
+
     login = async ({login, password}) => {
         const user = await this.usersTable
             .select()
-            .where({password, login})
+            .where({login})
             .first();
 
         if (!user.login && !user.password) {
+            
             return {};
         }
 
         console.log(password, '===', user.password);
-        const isValid = bCrypt.compareSync(password, user.password);
-        return isValid;
+        const isValid = bCrypt.compare(password, user.password);
+        if (!isVlalid) {
+            return null;
+        }
 
-        // return user;
+        const token = jwt.sign(user.id, process.env.SECRET);
+        console.log('token: ', token)
+ 
+        return token;
+    }
+
+    register = async ({login, password}) => {
+
     }
 }

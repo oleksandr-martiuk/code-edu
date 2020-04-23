@@ -1,7 +1,11 @@
 INSERT INTO "users" (login, password)
        VALUES   ('ban', '123'),
                 ('anna_maria', '35sd1f5ad3f'),
-                ('zorro65', 'e53rf315d3');
+                ('zorro65', '$2a$10$WG.yowHEYnv9VzTa3BvbBexUdsTvImdybVmS1v7GPQ19Bdc797ZVa');
+
+-- ('ban', '123')
+-- ('anna_maria', '35sd1f5ad3f')
+-- ('zorro65', '$2a$10$WG.yowHEYnv9VzTa3BvbBexUdsTvImdybVmS1v7GPQ19Bdc797ZVa')
 
 INSERT INTO "tasks" (title, description)
        VALUES   ('Task # 01', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur risus eget sem vulputate, id consequat dolor mattis. Nullam eleifend bibendum lorem vel tempus. Fusce feugiat feugiat arcu, tincidunt consequat orci consectetur a. Morbi et lacinia massa, vitae consectetur justo. Phasellus sit amet fermentu.'),
