@@ -3,11 +3,11 @@ import jwt from 'jsonwebtoken';
 
 export default class Auth {
     constructor(connection){
-        this.usersTable = connection('users');
+        this.tableUsers = connection('users');
     }
 
     login = async ({login, password}) => {
-        const user = await this.usersTable
+        const user = await this.tableUsers
             .select()
             .where({login})
             .first();
@@ -29,7 +29,8 @@ export default class Auth {
         return token;
     }
 
-    register = async ({login, password}) => {
-
+    register = async (fields) => {
+        const user = await this.tableUsers.insert(fields);
+        return user;
     }
 }

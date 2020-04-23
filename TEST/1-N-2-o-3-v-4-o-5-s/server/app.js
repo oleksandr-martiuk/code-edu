@@ -1,26 +1,30 @@
-// (!) OBLIGATION:
+// |~~~~~~~~| (!) OBLIGATION |~~~~~~~~|:
 // TODO: add 'errors handler'
-// TODO: add 'logger'
 // TODO: add JSON-validation
-// TODO: add clusters
-// TODO: add iq-data-layer 'knex' requests
+// TODO: 
+// TODO: 
+// TODO: 
 
-// (~) OPTIONAL:
+// |~~~~~~~~~~~| OPTIONAL |~~~~~~~~~~~|:
+// TODO: add clusters
+// TODO: add 'logger'
+// TODO: add app-data-layer 'knex' requests
+// TODO: add 'Cache'-service
 // TODO: 
 // TODO: 
 // TODO: 
 
 import express from 'express';
-const app = express();
-
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import {routes} from './api/routes';
+const morgan = require('morgan'); // TODO: update such logger
+
+const app = express();
+const {APP_PORT} = process.env;
 
 dotenv.config();
-const {APP_PORT} = process.env;
-const morgan = require('morgan');
 app.use(morgan('tiny'));
 
 app.use(cors());

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import AppDataLayer from '../../services/lib/app-data-layer';
-import User from '../../services/core/user';
+import Auth from '../../services/core/auth';
 
 export const router = Router();
 const dataLayer = new AppDataLayer();
@@ -28,10 +28,10 @@ router.post('/register', async (req, res, next) => {
     try {
         const { login, password } = req.body;
 
-        const userService = new User(dbConn);
-        const user = await userService.login({login, password});
+        const authService = new Auth(dbConn);
+        const user = await authService.register({login, password});
 
-        res.send({ data: users });
+        res.send({ data: user });
     } catch (error) {
         return next(error);
     } finally {

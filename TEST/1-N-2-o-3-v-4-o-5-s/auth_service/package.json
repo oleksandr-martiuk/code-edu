@@ -1,10 +1,10 @@
 {
   "name": "auth",
   "version": "0.0.1",
-  "description": "Microservice for Authentication",
+  "description": "microservice (tech task)",
   "main": "index.js",
   "scripts": {
-    "start": "node -r esm index",
+    "start": "node -r esm index"
   },
   "author": "Martiuk Oleksandr",
   "license": "ISC"

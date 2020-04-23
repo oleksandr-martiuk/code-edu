@@ -1,7 +1,7 @@
 {
   "name": "test",
   "version": "0.0.1",
-  "description": "The tech task",
+  "description": "tech task",
   "main": "app.js",
   "scripts": {
     "start": "node -r esm app",
