@@ -1,5 +1,3 @@
-// TODO: bring DB options to the environment variables
-
 import knex from 'knex';
 
 export default class AppDataLayer {
@@ -9,15 +7,11 @@ export default class AppDataLayer {
 
     createConnection = async () => {
         this.connection = knex({
-            client: process.env.DB_CLIENT,
-            connection: {
-                host : process.env.DB_HOST,
-                port: process.env.DB_PORT,
-                user : process.env.DB_USER,
-                password : process.env.DB_PASS,
-                database : process.env.DB_NAME
-            }
+            client: 'pg',
+            connection: process.env.PG_CONNECTION_STRING,
+            searchPath: ['knex', 'public'],
         });
+
         return this.connection;
     }
 

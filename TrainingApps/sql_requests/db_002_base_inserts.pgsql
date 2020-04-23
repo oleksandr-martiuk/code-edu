@@ -1,7 +1,7 @@
 INSERT INTO "users" (login, password)
        VALUES   ('ban', '123'),
                 ('anna_maria', '35sd1f5ad3f'),
-                ('zorro65', '$2a$10$WG.yowHEYnv9VzTa3BvbBexUdsTvImdybVmS1v7GPQ19Bdc797ZVa');
+                ('zorro65', 'qwerty');
 
 -- ('ban', '123')
 -- ('anna_maria', '35sd1f5ad3f')

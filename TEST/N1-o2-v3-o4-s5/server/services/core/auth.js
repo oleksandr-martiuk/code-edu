@@ -1,36 +1,64 @@
+import { ErrorConflict, ErrorUnauthorized, ErrorNotFound } from '../lib/errors';
 import bCrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 export default class Auth {
-    constructor(connection){
-        this.tableUsers = connection('users');
+    constructor(dbConnection){
+        this.conn = dbConnection;
+        this.usersTable = 'users';
     }
 
-    login = async ({login, password}) => {
-        const user = await this.tableUsers
-            .select()
-            .where({login})
+    async register ({login, password}) {
+        const user = await this.findUser({login});
+        if (user) {
+            throw new ErrorConflict('User already exists');
+        }
+
+        const userRes = await this.createNewUser({login, password});
+
+        return userRes;
+    }
+
+    async createNewUser ({login, password}) {
+        const salt = await bCrypt.genSalt(+process.env.ROUNDS);
+        const hashedPass = await bCrypt.hash(password, salt);
+
+        const newUserFields = {
+            login,
+            password: hashedPass
+        }
+
+        await this.conn(this.usersTable).insert(newUserFields);
+        const newUser = await this.findUser({login}, ['id', 'login']);
+
+        return newUser;
+    }
+
+    async login ({login, password}) {
+        const user = await this.findUser({login});
+        if (!user) {
+            throw new ErrorNotFound(`User '${login}' doesn't exist`);
+        }
+
+        const passResult = await bCrypt.compare(password, user.password);
+        if (!passResult) {
+            throw new ErrorUnauthorized(`Password is not correct`);
+        }
+
+        const tokenPayload = {
+            userId: user.id,
+            login: user.login
+        };
+        const expirationTime = { expiresIn: process.env.EXPIRATION_TIME };
+        const token = jwt.sign(tokenPayload, process.env.SECRET, expirationTime);
+
+        return `Bearer ${token}`;
+    }
+
+    async findUser (whereFields = {}, selectFields = []) {
+        return await this.conn(this.usersTable)
+            .select(selectFields)
+            .where(whereFields)
             .first();
-
-        if (!user.login && !user.password) {
-            
-            return {};
-        }
-
-        console.log(password, '===', user.password);
-        const isValid = bCrypt.compare(password, user.password);
-        if (!isVlalid) {
-            return null;
-        }
-
-        const token = jwt.sign(user.id, process.env.SECRET);
-        console.log('token: ', token)
- 
-        return token;
-    }
-
-    register = async (fields) => {
-        const user = await this.tableUsers.insert(fields);
-        return user;
     }
 }

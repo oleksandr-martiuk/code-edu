@@ -1,7 +1,8 @@
+import auth from '../../middleware/auth';
 import {Router} from 'express';
 export const router = Router();
 
-router.get('/:userId', async (req, res, next) => {
+router.get('/:userId', auth, async (req, res, next) => {
     try {
         res.send({ data: 'User-tasks: get by userId' });
     } catch (error) {
@@ -9,7 +10,7 @@ router.get('/:userId', async (req, res, next) => {
     }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', auth, async (req, res, next) => {
     try {
         res.send({ data: 'User-tasks: post' });
     } catch (error) {
@@ -17,7 +18,7 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-router.put('/', async (req, res, next) => {
+router.put('/', auth, async (req, res, next) => {
     try {
         res.send({ data: 'User-tasks: put' });
     } catch (error) {
@@ -25,7 +26,7 @@ router.put('/', async (req, res, next) => {
     }
 });
 
-router.delete('/', async (req, res, next) => {
+router.delete('/', auth, async (req, res, next) => {
     try {
         res.send({ data: 'User-tasks: delete' });
     } catch (error) {

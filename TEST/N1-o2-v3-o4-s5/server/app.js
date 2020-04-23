@@ -1,7 +1,7 @@
 // |~~~~~~~~| (!) OBLIGATION |~~~~~~~~|:
 // TODO: add 'errors handler'
 // TODO: add JSON-validation
-// TODO: 
+// TODO: add 'TRANSACTIONS'
 // TODO: 
 // TODO: 
 
@@ -10,30 +10,33 @@
 // TODO: add 'logger'
 // TODO: add app-data-layer 'knex' requests
 // TODO: add 'Cache'-service
-// TODO: 
+// TODO: add nodemon
 // TODO: 
 // TODO: 
 
 import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import {routes} from './api/routes';
-const morgan = require('morgan'); // TODO: update such logger
-
 const app = express();
+
+import dotenv from 'dotenv';
+dotenv.config();
 const {APP_PORT} = process.env;
 
-dotenv.config();
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import {routes} from './api/routes';
+import errorHandler from './middleware/error-handler';
+
+const morgan = require('morgan'); // TODO: update such logger
 app.use(morgan('tiny'));
 
-app.use(cors());
 app.use(bodyParser.json({ limit: '100mb' }));
 app.use(bodyParser.urlencoded({
   extended: false,
   limit: '100mb'
 }));
+app.use(cors());
 
 app.use('/api', routes);
+app.use(errorHandler);
 
 app.listen(APP_PORT + '', () => console.log(`App is listening on port ${APP_PORT}`));
