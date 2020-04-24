@@ -1,6 +1,10 @@
+import { ErrorServerError } from '../services/lib/errors'
+
 export default function (err, req, res, next) {
-    if (err.code) {
-        res.status(err.code).json({ message: err.message });
+    if (!err.code) {
+        err = new ErrorServerError();
     }
-    next(err);
+
+    res.status(err.code).json({ message: err.message });
+    next();
 }

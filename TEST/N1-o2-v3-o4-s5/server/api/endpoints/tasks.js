@@ -1,35 +1,71 @@
 import auth from '../../middleware/auth';
 import {Router} from 'express';
+import Task from '../../services/core/task';
 export const router = Router();
 
 router.post('/', auth, async (req, res, next) => {
+    const dataLayer = new AppDataLayer();
+
     try {
-        res.send({ data: 'Tasks: /post' });
+        const dbConnection = await dataLayer.createConnection();
+        const taskService = new Task(dbConnection);
+
+        const {title, description} = req.body;
+        console.log('req.body: ', req.body);
+
+        const task = await taskService.createOne({title, description});
+
+        console.log('TASK: ', task);
+
+        res.status(201).send(task);
     } catch (error) {
-        return next(error);
+        next(error);
+    } finally {
+        await dataLayer.destroyConnection();
     }
 });
 
 router.get('/', auth, async (req, res, next) => {
+    const dataLayer = new AppDataLayer();
+
     try {
-        res.send({ data: 'Tasks: /get (all)' });
+        const dbConnection = await dataLayer.createConnection();
+        const taskService = new Task(dbConnection);
+
+        res.status(200).send('NO RESPONSE');
     } catch (error) {
-        return next(error);
+        next(error);
+    } finally {
+        await dataLayer.destroyConnection();
     }
 });
 
 router.get('/:id', auth, async (req, res, next) => {
+    const dataLayer = new AppDataLayer();
+
     try {
-        res.send({ data: 'Tasks: /get (1)' });
+        const dbConnection = await dataLayer.createConnection();
+        const taskService = new Task(dbConnection);
+
+        res.status(200).send('NO RESPONSE');
     } catch (error) {
-        return next(error);
+        next(error);
+    } finally {
+        await dataLayer.destroyConnection();
     }
 });
 
 router.delete('/:id', auth, async (req, res, next) => {
+    const dataLayer = new AppDataLayer();
+
     try {
-        res.send({ data: 'Tasks: /delete (1)' });
+        const dbConnection = await dataLayer.createConnection();
+        const taskService = new Task(dbConnection);
+
+        res.status(200).send('NO RESPONSE');
     } catch (error) {
-        return next(error);
+        next(error);
+    } finally {
+        await dataLayer.destroyConnection();
     }
 });

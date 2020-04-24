@@ -3,29 +3,30 @@ import AppDataLayer from '../../services/lib/app-data-layer';
 import Auth from '../../services/core/auth';
 
 export const router = Router();
-const dataLayer = new AppDataLayer();
 
 router.post('/register', async (req, res, next) => {
-    const dbConn = await dataLayer.createConnection();
+    const dataLayer = new AppDataLayer();
 
     try {
+        const dbConnection = await dataLayer.createConnection();
         const { login, password } = req.body;
 
-        const authService = new Auth(dbConn);
+        const authService = new Auth(dbConnection);
         const user = await authService.register({login, password});
 
         res.status(201).send(user);
     } catch (error) {
         next(error);
     } finally {
-        dataLayer.destroyConnection();
+        await dataLayer.destroyConnection();
     }
 });
 
 router.post('/login', async (req, res, next) => {
-    const dbConnection = await dataLayer.createConnection();
+    const dataLayer = new AppDataLayer();
 
     try {
+        const dbConnection = await dataLayer.createConnection();
         const { login, password } = req.body;
 
         const authService = new Auth(dbConnection);
@@ -35,6 +36,6 @@ router.post('/login', async (req, res, next) => {
     } catch (error) {
         next(error);
     } finally {
-        dataLayer.destroyConnection();
+        await dataLayer.destroyConnection();
     }
 });

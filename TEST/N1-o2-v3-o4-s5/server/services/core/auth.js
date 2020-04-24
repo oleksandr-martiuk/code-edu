@@ -14,12 +14,12 @@ export default class Auth {
             throw new ErrorConflict('User already exists');
         }
 
-        const userRes = await this.createNewUser({login, password});
+        const userRes = await this.createUser({login, password});
 
         return userRes;
     }
 
-    async createNewUser ({login, password}) {
+    async createUser ({login, password}) {
         const salt = await bCrypt.genSalt(+process.env.ROUNDS);
         const hashedPass = await bCrypt.hash(password, salt);
 
