@@ -1,6 +1,6 @@
 'use strict';
 
-import { UNPROCESSABLE_ENTITY } from './response/statuses';
+import {UNPROCESSABLE_ENTITY} from './response/statuses';
 import ErrorGeneric from './error-generic';
 
 /**

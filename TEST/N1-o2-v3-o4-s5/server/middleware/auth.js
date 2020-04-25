@@ -1,4 +1,4 @@
-import { ErrorUnauthorized } from '../services/lib/errors';
+import {ErrorUnauthorized} from '../services/lib/errors';
 import jwt from 'jsonwebtoken';
 
 export default function (req, res, next) {
@@ -8,10 +8,9 @@ export default function (req, res, next) {
     }
 
     const token = authHeader.replace('Bearer ', '');
-    console.log('TOKEN: ', token);
 
     try {
-        const result = jwt.verify(token, process.env.SECRET);
+        jwt.verify(token, process.env.SECRET);
     } catch(err) {
         throw new ErrorUnauthorized(`Invalid token!`);
     }

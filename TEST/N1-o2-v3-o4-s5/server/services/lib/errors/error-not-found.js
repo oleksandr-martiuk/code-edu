@@ -1,6 +1,6 @@
 'use strict';
 
-import { NOT_FOUND } from './response/statuses';
+import {NOT_FOUND} from './response/statuses';
 import ErrorGeneric from './error-generic';
 
 export default class ErrorNotFound extends ErrorGeneric {

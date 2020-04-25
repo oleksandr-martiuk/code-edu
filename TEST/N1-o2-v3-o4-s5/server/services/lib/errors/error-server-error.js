@@ -1,6 +1,6 @@
 'use strict';
 
-import { INT_SERVER_ERROR } from './response/statuses';
+import {INT_SERVER_ERROR} from './response/statuses';
 import ErrorGeneric from './error-generic';
 
 export default class ErrorServerError extends ErrorGeneric {

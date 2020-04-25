@@ -1,6 +1,6 @@
 'use strict';
 
-import { CONFLICT } from './response/statuses';
+import {CONFLICT} from './response/statuses';
 import ErrorGeneric from './error-generic';
 
 export default class ErrorConflict extends ErrorGeneric {

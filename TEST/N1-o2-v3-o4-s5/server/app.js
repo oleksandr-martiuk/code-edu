@@ -1,18 +1,15 @@
-// |~~~~~~~~| (!) OBLIGATION |~~~~~~~~|:
-// TODO: add 'errors handler'
-// TODO: add JSON-validation
-// TODO: add 'TRANSACTIONS'
-// TODO: 
-// TODO: 
+// |~~~~~~~~~~~~~~~~~~~~~~~~~~~~| (!) OBLIGATION |~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 
-// |~~~~~~~~~~~| OPTIONAL |~~~~~~~~~~~|:
+// |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| OPTIONAL |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 // TODO: add clusters
 // TODO: add 'logger'
-// TODO: add app-data-layer 'knex' requests
 // TODO: add 'Cache'-service
 // TODO: add nodemon
-// TODO: 
-// TODO: 
+// TODO: add 'TRANSACTIONS'
+
+// |~~~~~~~~~~~~~~~~~~~~~~~~~~~~| BUSINESS LOGIC |~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+// TODO: (users) check user_id ---> for each allowed request
+// TODO: (tasks) ---> add field 'allowed_delete' if no one user uses such task
 
 import express from 'express';
 const app = express();

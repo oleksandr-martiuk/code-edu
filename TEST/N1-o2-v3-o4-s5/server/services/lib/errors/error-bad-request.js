@@ -1,6 +1,6 @@
 'use strict';
 
-import { BAD_REQUEST } from './response/statuses';
+import {BAD_REQUEST} from './response/statuses';
 import ErrorGeneric from './error-generic';
 
 export default class ErrorBadRequest extends ErrorGeneric {

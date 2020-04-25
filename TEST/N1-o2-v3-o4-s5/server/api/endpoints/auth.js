@@ -8,6 +8,8 @@ router.post('/register', async (req, res, next) => {
     const dataLayer = new AppDataLayer();
 
     try {
+        Auth.validateUserFields(req.body);
+
         const dbConnection = await dataLayer.createConnection();
         const { login, password } = req.body;
 
@@ -26,6 +28,8 @@ router.post('/login', async (req, res, next) => {
     const dataLayer = new AppDataLayer();
 
     try {
+        Auth.validateUserFields(req.body);
+
         const dbConnection = await dataLayer.createConnection();
         const { login, password } = req.body;
 

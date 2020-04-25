@@ -1,6 +1,6 @@
 'use strict';
 
-import { FORBIDDEN } from './response/statuses';
+import {FORBIDDEN} from './response/statuses';
 import ErrorGeneric from './error-generic';
 
 export default class ErrorForbidden extends ErrorGeneric {

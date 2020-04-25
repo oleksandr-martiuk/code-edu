@@ -1,41 +1,58 @@
-import { ErrorConflict, ErrorUnauthorized, ErrorNotFound } from '../lib/errors';
 import bCrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import Repository from "../../app-data-layer/repository";
+import {ErrorConflict, ErrorUnauthorized, ErrorNotFound, ErrorValidationError} from '../lib/errors';
+
+import SchemaValidatorService from '../lib/schema-validator-service';
+const validator = new SchemaValidatorService();
+import * as userSchema from '../../json-schema/user.json';
 
 export default class Auth {
     constructor(dbConnection){
-        this.conn = dbConnection;
-        this.usersTable = 'users';
+        this.usersRepo = new Repository(dbConnection, 'users')
+    }
+
+    static validateUserFields(data) {
+        if (!validator.isValid(userSchema, data)) {
+            throw new ErrorValidationError(undefined, validator.getFormattedErrors());
+        }
+
+        return true;
     }
 
     async register ({login, password}) {
-        const user = await this.findUser({login});
-        if (user) {
+        if (await this.usersRepo.exists({login})) {
             throw new ErrorConflict('User already exists');
         }
 
-        const userRes = await this.createUser({login, password});
+        const user = await this.createUser({login, password});
 
-        return userRes;
+        return user;
     }
 
     async createUser ({login, password}) {
+        const userFields = await this.prepareUserFields({login, password});
+        await this.usersRepo.add(userFields);
+
+        const user = await this.usersRepo.getColumns(['id', 'login'], {login});
+
+        return user;
+    }
+
+    async prepareUserFields ({login, password}) {
         const salt = await bCrypt.genSalt(+process.env.ROUNDS);
         const hashedPass = await bCrypt.hash(password, salt);
 
-        const newUserFields = {
+        const userFields = {
             login,
             password: hashedPass
         }
 
-        await this.conn(this.usersTable).insert(newUserFields);
-        const newUser = await this.findUser({login}, ['id', 'login']);
-
-        return newUser;
+        return userFields;
     }
 
     async login ({login, password}) {
-        const user = await this.findUser({login});
+        const user = await this.usersRepo.getBy({login});
         if (!user) {
             throw new ErrorNotFound(`User '${login}' doesn't exist`);
         }
@@ -45,6 +62,12 @@ export default class Auth {
             throw new ErrorUnauthorized(`Password is not correct`);
         }
 
+        const token = this.createToken(user);
+
+        return token;
+    }
+
+    createToken (user) {
         const tokenPayload = {
             userId: user.id,
             login: user.login
@@ -53,12 +76,5 @@ export default class Auth {
         const token = jwt.sign(tokenPayload, process.env.SECRET, expirationTime);
 
         return `Bearer ${token}`;
-    }
-
-    async findUser (whereFields = {}, selectFields = []) {
-        return await this.conn(this.usersTable)
-            .select(selectFields)
-            .where(whereFields)
-            .first();
     }
 }

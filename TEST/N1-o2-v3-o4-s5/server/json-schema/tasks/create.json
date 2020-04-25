@@ -1,0 +1,21 @@
+{
+    "title": "A task schema",
+    "type": "object",
+    "required": [
+        "title"
+    ],
+    "properties": {
+        "title": {
+            "type": "string",
+            "notEmpty": true,
+            "trimValue": true,
+            "maxLength": 50
+        },
+        "description": {
+            "type": "string",
+            "notEmpty": true,
+            "trimValue": true,
+            "maxLength": 500
+        }
+    }
+}

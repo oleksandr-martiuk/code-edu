@@ -1,6 +1,6 @@
 'use strict';
 
-import { UNAUTHORIZED } from './response/statuses';
+import {UNAUTHORIZED} from './response/statuses';
 import ErrorGeneric from './error-generic';
 
 export default class ErrorUnauthorized extends ErrorGeneric {

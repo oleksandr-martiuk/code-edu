@@ -1,0 +1,15 @@
+{
+    "title": "A user-task schema",
+    "type": "object",
+    "properties": {
+        "complete": {
+            "type": "boolean",
+            "notEmpty": true
+        },
+        "taskOrder": {
+            "type": "integer",
+            "notEmpty": true,
+            "minimum": 1
+        }
+    }
+}
