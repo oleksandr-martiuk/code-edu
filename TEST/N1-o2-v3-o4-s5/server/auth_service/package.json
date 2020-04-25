@@ -1,22 +1,20 @@
 {
-  "name": "server",
+  "name": "auth_service",
   "version": "0.0.1",
-  "description": "tech task server",
+  "description": "Authentication service",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd main && npm run start\" \"cd auth_service && npm run start\""
+    "start": "node -r esm index",
+    "test": "mocha -r esm test  --timeout 5000"
   },
   "author": "Oleksandr Martiuk",
   "license": "MIT",
   "dependencies": {
-    "ajv": "^6.12.2",
-    "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
-    "find-config": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.0",
     "morgan": "^1.10.0",
@@ -24,7 +22,6 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "concurrently": "^5.2.0",
     "eslint": "^6.8.0",
     "mocha": "^7.1.1",
     "nodemon": "^2.0.3",
