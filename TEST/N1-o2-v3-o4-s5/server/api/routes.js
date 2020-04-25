@@ -13,6 +13,7 @@ routes.use('/user-tasks', userTasks);
 
 routes.use(function(req, res, next) {
     if (!req.route)
-        return next (new ErrorNotFound('Not found'));
+        return next (new ErrorNotFound());
+
     next();
 });

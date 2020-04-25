@@ -1,6 +1,9 @@
 // |~~~~~~~~~~~~~~~~~~~~~~~~~~~~| (!) OBLIGATION |~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+// TODO: add Unit tests
+// TODO: create Docker image
 
 // |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~| OPTIONAL |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+// TODO: add Integrational tests
 // TODO: add clusters
 // TODO: add 'logger'
 // TODO: add 'Cache'-service
@@ -10,6 +13,8 @@
 // |~~~~~~~~~~~~~~~~~~~~~~~~~~~~| BUSINESS LOGIC |~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 // TODO: (users) check user_id ---> for each allowed request
 // TODO: (tasks) ---> add field 'allowed_delete' if no one user uses such task
+// TODO: (users_tasks) ---> add validation of user 'id' when trying to update some record
+//                     ---> is it really you or not (by TOKEN)
 
 import express from 'express';
 const app = express();

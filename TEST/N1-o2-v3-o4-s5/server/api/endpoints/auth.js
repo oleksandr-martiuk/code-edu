@@ -14,7 +14,7 @@ router.post('/register', async (req, res, next) => {
         const { login, password } = req.body;
 
         const authService = new Auth(dbConnection);
-        const user = await authService.register({login, password});
+        const user = await authService.register(login, password);
 
         res.status(201).send(user);
     } catch (error) {
@@ -34,7 +34,7 @@ router.post('/login', async (req, res, next) => {
         const { login, password } = req.body;
 
         const authService = new Auth(dbConnection);
-        const token = await authService.login({login, password});
+        const token = await authService.login(login, password);
 
         res.status(200).send({token});
     } catch (error) {

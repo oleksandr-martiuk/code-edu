@@ -7,7 +7,8 @@ import * as schemaCreate from '../../json-schema/tasks/create.json';
 
 export default class Task {
     constructor(dbConnection){
-        this.tasksRepo = new Repository(dbConnection, 'tasks')
+        this.tasksRepo = new Repository(dbConnection, 'tasks');
+        this.userTasksRepo = new Repository(dbConnection, 'users_tasks')
     }
 
     static validateCreating (taskData) {
@@ -18,7 +19,7 @@ export default class Task {
         return true;
     }
     
-    async createOne(fields) {
+    async create(fields) {
         const {title} = fields;
         if (await this.tasksRepo.exists({title})) {
             throw new ErrorConflict('Such task already exists');
@@ -34,10 +35,17 @@ export default class Task {
         return await this.tasksRepo.getAll();
     }
 
-    async deleteOne(id) {
-        const task = await this.tasksRepo.get(id);
+    async delete(id) {
+        const [task, userTaskRec] = await Promise.all([
+            this.tasksRepo.get(id),
+            this.userTasksRepo.getBy({task_id: id}),
+        ]);
+
         if (!task) {
             throw new ErrorNotFound(`Such task does not exist`);
+        }
+        if (userTaskRec) {
+            throw new ErrorNotFound(`Such task can't be removed (currently it is in use)`);
         }
 
         await this.tasksRepo.delete(id);

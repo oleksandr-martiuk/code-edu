@@ -20,18 +20,18 @@ export default class Auth {
         return true;
     }
 
-    async register ({login, password}) {
+    async register (login, password) {
         if (await this.usersRepo.exists({login})) {
             throw new ErrorConflict('User already exists');
         }
 
-        const user = await this.createUser({login, password});
+        const user = await this.createUser(login, password);
 
         return user;
     }
 
-    async createUser ({login, password}) {
-        const userFields = await this.prepareUserFields({login, password});
+    async createUser (login, password) {
+        const userFields = await this.prepareUserFields(login, password);
         await this.usersRepo.add(userFields);
 
         const user = await this.usersRepo.getColumns(['id', 'login'], {login});
@@ -39,7 +39,7 @@ export default class Auth {
         return user;
     }
 
-    async prepareUserFields ({login, password}) {
+    async prepareUserFields (login, password) {
         const salt = await bCrypt.genSalt(+process.env.ROUNDS);
         const hashedPass = await bCrypt.hash(password, salt);
 
@@ -51,7 +51,7 @@ export default class Auth {
         return userFields;
     }
 
-    async login ({login, password}) {
+    async login (login, password) {
         const user = await this.usersRepo.getBy({login});
         if (!user) {
             throw new ErrorNotFound(`User '${login}' doesn't exist`);

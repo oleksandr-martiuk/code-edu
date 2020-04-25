@@ -38,17 +38,23 @@ export default class Repository {
             .where(where);
     }
 
-    async exists(where) {
-        const row = await this.connection(this.tableName)
+    updateBy(fields, where) {
+        return this.connection(this.tableName)
             .where(where)
-            .first();
-        return !!row;
+            .update(fields);
     }
 
     delete(id) {
         return this.connection(this.tableName)
             .where({ id })
             .delete();
+    }
+
+    async exists(where) {
+        const row = await this.connection(this.tableName)
+            .where(where)
+            .first();
+        return !!row;
     }
 
     queryBuilder() {
@@ -67,12 +73,6 @@ export default class Repository {
 
     // update(fields) {
     //     return this.connection(this.tableName).update(fields);
-    // }
-
-    // updateBy(fields, where) {
-    //     return this.connection(this.tableName)
-    //         .where(where)
-    //         .update(fields);
     // }
 
     // deleteBy(where) {

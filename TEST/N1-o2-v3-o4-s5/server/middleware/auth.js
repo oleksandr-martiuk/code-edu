@@ -10,7 +10,8 @@ export default function (req, res, next) {
     const token = authHeader.replace('Bearer ', '');
 
     try {
-        jwt.verify(token, process.env.SECRET);
+        const {userId} = jwt.verify(token, process.env.SECRET);
+        req.locals = {userId};
     } catch(err) {
         throw new ErrorUnauthorized(`Invalid token!`);
     }

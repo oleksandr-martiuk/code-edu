@@ -14,7 +14,7 @@ router.post('/', auth, async (req, res, next) => {
         const taskService = new Task(dbConnection);
 
         const {title, description} = req.body;
-        const task = await taskService.createOne({title, description});
+        const task = await taskService.create({title, description});
 
         res.status(201).send(task);
     } catch (error) {
@@ -50,9 +50,9 @@ router.delete('/:id', auth, async (req, res, next) => {
         const dbConnection = await dataLayer.createConnection();
         const taskService = new Task(dbConnection);
 
-        await taskService.deleteOne(id);
+        await taskService.delete(id);
 
-        res.status(202).send();
+        res.status(200).send();
     } catch (error) {
         next(error);
     } finally {

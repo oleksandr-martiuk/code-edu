@@ -5,18 +5,19 @@ import UserTasks from '../../services/core/user-tasks';
 
 export const router = Router();
 
-router.post('/:userId/:taskId', auth, async (req, res, next) => {
+router.post('/:taskId', auth, async (req, res, next) => {
     const dataLayer = new AppDataLayer();
 
     try {
-        const {userId, taskId} = req.params;
+        const {taskId} = req.params;
+        const {userId} = req.locals;
 
         const dbConnection = await dataLayer.createConnection();
         const userTasksService = new UserTasks(dbConnection);
 
-        await userTasksService.createOne({userId, taskId});
+        const userTaskRecord = await userTasksService.create(userId, taskId);
 
-        res.status(201).send();
+        res.status(201).send(userTaskRecord);
     } catch (error) {
         next(error);
     } finally {
@@ -24,11 +25,11 @@ router.post('/:userId/:taskId', auth, async (req, res, next) => {
     }
 });
 
-router.get('/:userId', auth, async (req, res, next) => {
+router.get('/', auth, async (req, res, next) => {
     const dataLayer = new AppDataLayer();
 
     try {
-        const {userId} = req.params;
+        const {userId} = req.locals;
 
         const dbConnection = await dataLayer.createConnection();
         const userTasksService = new UserTasks(dbConnection);
@@ -43,14 +44,20 @@ router.get('/:userId', auth, async (req, res, next) => {
     }
 });
 
-router.put('/:userId/:taskId', auth, async (req, res, next) => {
+router.put('/:id', auth, async (req, res, next) => {
     const dataLayer = new AppDataLayer();
 
     try {
-        const dbConnection = await dataLayer.createConnection();
-        const userTaskService = new UserTasks(dbConnection);
+        UserTasks.validateUpdating(req.body);
+        const {id} = req.params;
+        const {userId} = req.locals;
 
-        res.status(200).send('NO RESPONSE');
+        const dbConnection = await dataLayer.createConnection();
+        const userTasksService = new UserTasks(dbConnection);
+
+        await userTasksService.update(userId, id, req.body);
+
+        res.status(204).send();
     } catch (error) {
         next(error);
     } finally {
@@ -58,18 +65,19 @@ router.put('/:userId/:taskId', auth, async (req, res, next) => {
     }
 });
 
-router.delete('/:userId/:taskId', auth, async (req, res, next) => {
+router.delete('/:id', auth, async (req, res, next) => {
     const dataLayer = new AppDataLayer();
 
     try {
-        const {userId, taskId} = req.params;
+        const {id} = req.params;
+        const {userId} = req.locals;
 
         const dbConnection = await dataLayer.createConnection();
         const userTasksService = new UserTasks(dbConnection);
 
-        await userTasksService.deleteOne({userId, taskId});
+        await userTasksService.delete(userId, id);
 
-        res.status(200).send('NO RESPONSE');
+        res.status(200).send();
     } catch (error) {
         next(error);
     } finally {

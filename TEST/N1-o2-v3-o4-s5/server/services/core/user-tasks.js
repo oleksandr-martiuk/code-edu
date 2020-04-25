@@ -20,11 +20,8 @@ export default class UserTasks {
         return true;
     }
 
-    async createOne({userId, taskId}) {
-        await Promise.all([
-            this.checkUserTaskExistance({userId, taskId}),
-            this.isRecordExists({userId, taskId})
-        ]);
+    async create(userId, taskId) {
+        await this.checkEntitiesExistence(userId, taskId);
 
         const maxOrder = await this.getTaskCount(userId);
         const nextOrder = (maxOrder.max) ? ++maxOrder.max : 1
@@ -35,12 +32,16 @@ export default class UserTasks {
             task_order: nextOrder
         }
         await this.userTasksRepo.add(preparedRecord);
+        const record = await this.userTasksRepo.getBy(preparedRecord)
+
+        return record;
     }
 
-    async checkUserTaskExistence({userId, taskId}) {
-        const [userExist, taskExist] = await Promise.all([
+    async checkEntitiesExistence(userId, taskId) {
+        const [userExist, taskExist, recordExist] = await Promise.all([
             this.usersRepo.exists({id: userId}),
-            this.tasksRepo.exists({id: taskId})
+            this.tasksRepo.exists({id: taskId}),
+            this.userTasksRepo.exists({user_id: userId, task_id: taskId})
         ]);
 
         if (!userExist) {
@@ -49,10 +50,6 @@ export default class UserTasks {
         if (!taskExist) {
             throw new ErrorNotFound(`Such task does not exist`);
         }
-    }
-
-    async isRecordExists({userId, taskId}) {
-        const recordExist = await this.userTasksRepo.exists({user_id: userId, task_id: taskId});
         if (recordExist) {
             throw new ErrorConflict(`Such record already exists`);
         }
@@ -74,12 +71,21 @@ export default class UserTasks {
             .orderBy('ut.task_order');
     }
 
-    async delete(id) {
-        const recordExist = await this.userTasksRepo.exists();
-        if (!recordExist) {
-            
-        }
+    async update(userId, id, updateFields = {}) {
+        await this.isUserRecord({id, user_id: userId});
+        await this.userTasksRepo.updateBy(updateFields, {id})
+    }
 
-        await this.userTasksRepo.delete()
+    async delete(userId, id) {
+        await this.isUserRecord({id, user_id: userId});
+        await this.userTasksRepo.delete(id)
+    }
+
+    async isUserRecord(whereCond){
+        console.log(whereCond);
+        const recordExist = await this.userTasksRepo.exists(whereCond)
+        if (!recordExist) {
+            throw new ErrorNotFound(`You don't have permission for changing such record`);
+        }
     }
 }
