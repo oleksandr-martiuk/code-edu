@@ -1,4 +1,6 @@
-import Repository from "../../app-data-layer/repository";
+import UsersTasksRepository from "../../app-data-layer/user-tasks.repository";
+import UsersRepository from "../../app-data-layer/users.repository";
+import TasksRepository from "../../app-data-layer/tasks.repository";
 import {ErrorValidationError, ErrorNotFound, ErrorConflict} from '../lib/errors'
 
 import SchemaValidatorService from '../lib/schema-validator-service';
@@ -7,9 +9,9 @@ import * as schemaUpdate from '../../json-schema/user-tasks/update.json';
 
 export default class UserTasks {
     constructor(dbConnection){
-        this.userTasksRepo = new Repository(dbConnection, 'users_tasks');
-        this.usersRepo = new Repository(dbConnection, 'users');
-        this.tasksRepo = new Repository(dbConnection, 'tasks');
+        this.userTasksRepo = new UsersTasksRepository(dbConnection)
+        this.usersRepo = new UsersRepository(dbConnection);
+        this.tasksRepo = new TasksRepository(dbConnection);
     }
 
     static validateUpdating (userTaskData) {
@@ -23,7 +25,7 @@ export default class UserTasks {
     async create(userId, taskId) {
         await this.checkEntitiesExistence(userId, taskId);
 
-        const maxOrder = await this.getTaskCount(userId);
+        const maxOrder = await this.userTasksRepo.getTaskCount(userId);
         const nextOrder = (maxOrder.max) ? ++maxOrder.max : 1
 
         const preparedRecord = {
@@ -31,8 +33,8 @@ export default class UserTasks {
             task_id: taskId,
             task_order: nextOrder
         }
-        await this.userTasksRepo.add(preparedRecord);
-        const record = await this.userTasksRepo.getBy(preparedRecord)
+
+        const record =await this.userTasksRepo.create(preparedRecord);
 
         return record;
     }
@@ -55,20 +57,8 @@ export default class UserTasks {
         }
     }
 
-    async getTaskCount(userId) {
-        return await this.userTasksRepo.queryBuilder()
-            .max('task_order')
-            .where({'user_id': userId})
-            .first();
-    }
-
     async getAll(userId) {
-        return await this.userTasksRepo.queryBuilder()
-            .select(['ut.*', 't.title', 't.description'])
-            .from('users_tasks AS ut')
-            .join('tasks AS t', 'ut.task_id', 't.id')
-            .where({'user_id': userId})
-            .orderBy('ut.task_order');
+        return await this.userTasksRepo.getAllByUser(userId);
     }
 
     async update(userId, id, updateFields = {}) {
@@ -82,7 +72,6 @@ export default class UserTasks {
     }
 
     async isUserRecord(whereCond){
-        console.log(whereCond);
         const recordExist = await this.userTasksRepo.exists(whereCond)
         if (!recordExist) {
             throw new ErrorNotFound(`You don't have permission for changing such record`);

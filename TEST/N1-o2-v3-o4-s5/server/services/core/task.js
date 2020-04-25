@@ -1,4 +1,5 @@
-import Repository from "../../app-data-layer/repository";
+import TasksRepository from "../../app-data-layer/tasks.repository";
+import UsersTasksRepository from "../../app-data-layer/user-tasks.repository";
 import {ErrorValidationError, ErrorConflict, ErrorNotFound} from '../lib/errors'
 
 import SchemaValidatorService from '../lib/schema-validator-service';
@@ -7,8 +8,8 @@ import * as schemaCreate from '../../json-schema/tasks/create.json';
 
 export default class Task {
     constructor(dbConnection){
-        this.tasksRepo = new Repository(dbConnection, 'tasks');
-        this.userTasksRepo = new Repository(dbConnection, 'users_tasks')
+        this.tasksRepo = new TasksRepository(dbConnection);
+        this.userTasksRepo = new UsersTasksRepository(dbConnection)
     }
 
     static validateCreating (taskData) {
@@ -25,10 +26,9 @@ export default class Task {
             throw new ErrorConflict('Such task already exists');
         }
 
-        await this.tasksRepo.add(fields);
-        const task = await this.tasksRepo.getBy({title});
+        const createdTask = await this.tasksRepo.create(fields);
 
-        return task;
+        return createdTask;
     };
 
     async readAll() {
@@ -45,7 +45,7 @@ export default class Task {
             throw new ErrorNotFound(`Such task does not exist`);
         }
         if (userTaskRec) {
-            throw new ErrorNotFound(`Such task can't be removed (currently it is in use)`);
+            throw new ErrorNotFound(`Such task currently in use`);
         }
 
         await this.tasksRepo.delete(id);

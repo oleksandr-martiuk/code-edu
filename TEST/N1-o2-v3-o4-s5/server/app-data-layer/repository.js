@@ -1,9 +1,5 @@
 "use strict";
 
-// TODO: remove not used methods
-
-import {ErrorNotFound} from '../services/lib/errors'; // TODO: remove such error if not needed
-
 export default class Repository {
     constructor(connection, tableBaseName) {
         this.connection = connection;
@@ -60,60 +56,4 @@ export default class Repository {
     queryBuilder() {
         return this.connection(this.tableName);
     }
-
-    // transaction() {
-    //     return new Promise(resolve => {
-    //         this.connection.transaction((trx) => resolve(trx));
-    //     });
-    // }
-
-    // queryBuilder() {
-    //     return this.connection(this.tableName);
-    // }
-
-    // update(fields) {
-    //     return this.connection(this.tableName).update(fields);
-    // }
-
-    // deleteBy(where) {
-    //     return this.connection(this.tableName)
-    //         .where(where)
-    //         .delete();
-    // }
-
-    // async existsCaseSensitive(where) {
-    //     const whereValues = Object.values(where);
-    //     const whereConditions = Object.keys(where)
-    //         .map(key => `${key} = ? COLLATE utf8mb4_bin`)
-    //         .join(' AND ');
-    //     const row = await this.connection(this.tableName)
-    //         .whereRaw(whereConditions, whereValues)
-    //         .first();
-    //     return !!row;
-    // }
-
-    // drop() {
-    //     return this.connection.schema.dropTable(this.tableName);
-    // }
-
-    // dropIfExists() {
-    //     return this.connection.schema.dropTableIfExists(this.tableName);
-    // }
-
-    // distinct(columns) {
-    //     return this.connection(this.tableName).distinct(columns);
-    // }
-
-    // raw(query, bindings) {
-    //     return bindings ? this.connection.raw(query, bindings) : this.connection.raw(query);
-    // }
-
-    // async tableExists(tableName) {
-    //     tableName = tableName || this.tableName;
-    //     const table = await this.connection('INFORMATION_SCHEMA.TABLES')
-    //         .select('TABLE_NAME')
-    //         .where({ TABLE_NAME: tableName })
-    //         .first();
-    //     return !!table;
-    // }
 }

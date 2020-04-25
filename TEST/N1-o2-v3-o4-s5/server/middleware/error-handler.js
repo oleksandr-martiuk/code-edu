@@ -1,5 +1,6 @@
 import { ErrorServerError } from '../services/lib/errors'
-import { ERR_STATUS_CODES } from '../constants';
+
+const ERR_STATUS_CODES = [400, 401, 403, 404, 422, 409];
 
 export default function (err, req, res, next) {
     console.log('ERROR: ', err);
