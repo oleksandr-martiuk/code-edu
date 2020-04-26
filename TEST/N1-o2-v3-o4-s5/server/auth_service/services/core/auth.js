@@ -8,31 +8,36 @@ export default class Auth {
         this.usersRepo = new Repository(dbConnection, 'users')
     }
 
-    async register (login, password) {
+    async register (login, password, email) {
         if (await this.usersRepo.exists({login})) {
             throw new ErrorConflict('User already exists');
         }
 
-        const user = await this.createUser(login, password);
+        const userAuthData = await this.createUser(login, password, email);
 
-        return user;
+        return userAuthData;
     }
 
-    async createUser (login, password) {
-        const userFields = await this.prepareUserFields(login, password);
+    async createUser (login, password, email) {
+        const userFields = await this.prepareUserFields(login, password, email);
         await this.usersRepo.add(userFields);
 
         const user = await this.usersRepo.getColumns(['id', 'login'], {login});
+        const authData = {
+            userId: user.id,
+            token: this.createToken(user)
+        };
 
-        return user;
+        return authData;
     }
 
-    async prepareUserFields (login, password) {
+    async prepareUserFields (login, password, email) {
         const salt = await bCrypt.genSalt(+process.env.ROUNDS);
         const hashedPass = await bCrypt.hash(password, salt);
 
         const userFields = {
             login,
+            email,
             password: hashedPass
         }
 
@@ -50,9 +55,12 @@ export default class Auth {
             throw new ErrorUnauthorized(`Password is not correct`);
         }
 
-        const token = this.createToken(user);
+        const authData = {
+            userId: user.id,
+            token: this.createToken(user)
+        };
 
-        return token;
+        return authData;
     }
 
     createToken (user) {

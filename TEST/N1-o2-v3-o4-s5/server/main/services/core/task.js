@@ -45,7 +45,7 @@ export default class Task {
             throw new ErrorNotFound(`Such task does not exist`);
         }
         if (userTaskRec) {
-            throw new ErrorNotFound(`Such task currently in use`);
+            throw new ErrorConflict(`Such task currently in use`);
         }
 
         await this.tasksRepo.delete(id);

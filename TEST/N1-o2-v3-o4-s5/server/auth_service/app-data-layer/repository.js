@@ -31,7 +31,8 @@ export default class Repository {
     getColumns(columns, where = {}) {
         return this.connection(this.tableName)
             .select(columns)
-            .where(where);
+            .where(where)
+            .first();
     }
 
     updateBy(fields, where) {

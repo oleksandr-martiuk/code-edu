@@ -1,0 +1,22 @@
+{
+    "title": "A login user schema",
+    "type": "object",
+    "required": [
+        "login",
+        "password"
+    ],
+    "properties": {
+        "login": {
+            "type": "string",
+            "notEmpty": true,
+            "trimValue": true,
+            "maxLength": 50
+        },
+        "password": {
+            "type": "string",
+            "notEmpty": true,
+            "trimValue": true,
+            "maxLength": 50
+        }
+    }
+}

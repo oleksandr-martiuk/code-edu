@@ -1,13 +1,21 @@
 {
-    "title": "A user schema",
+    "title": "A register user schema",
     "type": "object",
     "required": [
         "login",
+        "email",
         "password"
     ],
     "properties": {
         "login": {
             "type": "string",
+            "notEmpty": true,
+            "trimValue": true,
+            "maxLength": 50
+        },
+        "email": {
+            "type": "string",
+            "validEmail": true,
             "notEmpty": true,
             "trimValue": true,
             "maxLength": 50

@@ -9,12 +9,12 @@ router.post('/register', async (req, res, next) => {
 
     try {
         const dbConnection = await dataLayer.createConnection();
-        const { login, password } = req.body;
+        const { login, password, email } = req.body;
 
         const authService = new Auth(dbConnection);
-        const user = await authService.register(login, password);
+        const authData = await authService.register(login, password, email);
 
-        res.status(201).send(user);
+        res.status(201).send(authData);
     } catch (error) {
         next(error);
     } finally {
@@ -30,9 +30,9 @@ router.post('/login', async (req, res, next) => {
         const { login, password } = req.body;
 
         const authService = new Auth(dbConnection);
-        const token = await authService.login(login, password);
+        const authData = await authService.login(login, password);
 
-        res.status(200).send({token});
+        res.status(200).send(authData);
     } catch (error) {
         next(error);
     } finally {

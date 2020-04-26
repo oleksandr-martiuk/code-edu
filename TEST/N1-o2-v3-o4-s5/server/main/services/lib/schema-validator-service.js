@@ -16,6 +16,16 @@ export default class SchemaValidatorService {
       errors: true
     });
 
+    this.ajv.addKeyword('validEmail', {
+      type: 'string',
+      validate: function validate (schema, email) {
+        validate.errors = [{keyword: 'validEmail', message: `Email '${email}' is not valid`}];
+        const re = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&''*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+        return re.test(email);
+      },
+      errors: true
+    });
+
     this.ajv.addKeyword('trimValue', {
       type: 'string',
       errors: false,
