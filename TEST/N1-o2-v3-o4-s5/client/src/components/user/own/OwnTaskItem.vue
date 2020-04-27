@@ -1,9 +1,9 @@
 <template>
   <li v-bind:class="{disabled: task.complete}">
     <span v-bind:class="{done: task.complete}">
-    <button class="btn-add-item">&check;</button>
+    <button class="btn-add-item" v-on:click="$emit('complete-user-task', task.id)">&check;</button>
     <strong>{{index + 1}}. </strong>{{task.title | uppercase}}</span>
-    <button class="btn-rm-item" v-on:click="$emit('remove-task', task.id)">&times;</button>
+    <button class="btn-rm-item" v-on:click="$emit('remove-user-task', task.id)">&times;</button>
   </li>
 </template>
 

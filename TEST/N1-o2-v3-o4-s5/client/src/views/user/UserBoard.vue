@@ -6,9 +6,13 @@
       <div class="task-list">
         <Loader v-if="loader.own" />
         <div v-else-if="ownTasks.length">
-          <OwnTaskList v-bind:tasks="ownTasks"/>
+          <OwnTaskList
+            v-bind:tasks="ownTasks"
+            @remove-user-task="removeUserTask"
+            @complete-user-task="completeUserTask"
+          />
         </div>
-        <p v-else>No tasks!</p>
+        <h2 v-else>...no tasks!</h2>
       </div>
       <div class="task-list">
         <Loader v-if="loader.all" />
@@ -16,9 +20,10 @@
           <AllTaskList
             v-bind:tasks="allTasks"
             @remove-task="removeTask"
+            @add-user-task="addUserTask"
           />
         </div>
-        <p v-else>No tasks!</p>
+        <h2 v-else>...no tasks!</h2>
       </div>
     </div>
   </div>
@@ -37,7 +42,6 @@
         allTasks: [],
         ownTasks: [],
         loader: {all: true, own: true},
-        filter: 'all',
         token: '',
         userId: null,
         headers: {'Authorization': ''}
@@ -55,20 +59,20 @@
         this.headers = {'Authorization': this.token};
       },
       getAllTasks(){
+        this.loader.all = true;
         this.axios.get('http://localhost:9091/api/tasks', {headers: this.headers})
           .then(response => {
             this.allTasks = response.data;
-            if (this.allTasks.length)
-              this.loader.all = false;
+            this.loader.all = false;
           })
           .catch(error => console.error(error.response));
       },
       getUserTasks(){
+        this.loader.own = true;
         this.axios.get('http://localhost:9091/api/user-tasks', {headers: this.headers})
           .then(response => {
             this.ownTasks = response.data
-            if (this.ownTasks.length)
-              this.loader.own = false;
+            this.loader.own = false;
           })
           .catch(error => console.error(error.response));
       },
@@ -78,9 +82,26 @@
           .catch(error => console.error(error.response));
       },
       removeTask(id) {
-        console.log('REMOVE TASK ---> ', id);
         this.axios.delete(`http://localhost:9091/api/tasks/${id}`, {headers: this.headers})
           .then(response => this.getAllTasks())
+          .catch(error => console.error(error.response));
+      },
+      addUserTask(id) {
+        this.axios.post(`http://localhost:9091/api/user-tasks/${id}`, {}, {headers: this.headers})
+          .then(response => this.getUserTasks())
+          .catch(error => console.error(error.response));
+      },
+      removeUserTask(id) {
+        this.axios.delete(`http://localhost:9091/api/user-tasks/${id}`, {headers: this.headers})
+          .then(response => this.getUserTasks())
+          .catch(error => console.error(error.response));
+      },
+      completeUserTask(id) {
+        console.log('ADD TASK to the user ---> ', id);
+
+        const data = {complete: true};
+        this.axios.put(`http://localhost:9091/api/user-tasks/${id}`, data, {headers: this.headers})
+          .then(response => this.getUserTasks())
           .catch(error => console.error(error.response));
       }
     },

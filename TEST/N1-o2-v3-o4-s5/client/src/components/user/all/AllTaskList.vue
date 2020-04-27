@@ -8,6 +8,7 @@
         v-bind:task="task"
         v-bind:index="i"
         v-on:remove-task="removeTask"
+        v-on:add-user-task="addUserTask"
       />
     </ul>
   </div>
@@ -24,7 +25,10 @@
     methods: {
       removeTask(id) {
         this.$emit('remove-task', id)
-      }
+      },
+      addUserTask(id) {
+        this.$emit('add-user-task', id)
+      },
     }
   }
 </script>

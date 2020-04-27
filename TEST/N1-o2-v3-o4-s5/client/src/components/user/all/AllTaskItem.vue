@@ -1,7 +1,7 @@
 <template>
   <li>
     <span v-bind:class="{done: task.completed}">
-    <button class="btn-add-item">ADD</button>
+    <button class="btn-add-item" v-on:click="$emit('add-user-task', task.id)">ADD</button>
     <strong>{{index + 1}}. </strong>{{task.title | uppercase}}</span>
     <button class="btn-rm-item" v-on:click="$emit('remove-task', task.id)">&times;</button>
   </li>

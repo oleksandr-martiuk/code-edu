@@ -24,6 +24,7 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    min-width: 800px;
   }
   div.static {
     position: static;
@@ -38,6 +39,15 @@ export default {
     color: white;
     text-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
+  h2 {
+    color: rgb(0, 173, 226);
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  }
+
   .login-page {
     width: 360px;
     padding: 0;

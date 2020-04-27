@@ -11,6 +11,9 @@
 // TODO: limit the length of the field 'title' & 'description'
 // TODO: make 'description' longer and higher
 // TODO: fix 'Header'
+// TODO: (BL) ALL-LASTS LIST ---> disable button is task already in use by somebody else
+// TODO: 
+// TODO: 
 // TODO: 
 
 import Vue from 'vue';

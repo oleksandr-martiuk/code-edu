@@ -7,7 +7,8 @@
         v-bind:key="task.id"
         v-bind:task="task"
         v-bind:index="i"
-        v-on:remove-task="removeTask"
+        v-on:remove-user-task="removeUserTask"
+        v-on:complete-user-task="completeUserTask"
       />
     </ul>
   </div>
@@ -22,8 +23,11 @@
       OwnTaskItem
     },
     methods: {
-      removeTask(id) {
-        this.$emit('remove-task', id)
+      removeUserTask(id){
+        this.$emit('remove-user-task', id);
+      },
+      completeUserTask(id) {
+        this.$emit('complete-user-task', id);
       }
     }
   }
