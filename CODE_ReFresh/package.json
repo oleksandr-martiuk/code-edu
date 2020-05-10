@@ -1,0 +1,9 @@
+{
+  "name": "code_refresh",
+  "version": "1.0.0",
+  "description": "js tasks and features",
+  "author": "Oleksandr Martiuk",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}
