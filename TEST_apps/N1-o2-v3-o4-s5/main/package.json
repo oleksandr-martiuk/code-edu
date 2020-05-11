@@ -1,13 +1,14 @@
 {
-  "name": "server",
+  "name": "2t",
   "version": "0.0.1",
-  "description": "tech task server",
-  "main": "index.js",
+  "description": "tech task",
+  "main": "app.js",
   "scripts": {
-    "start": "concurrently \"cd main && npm run start\" \"cd auth_service && npm run start\""
+    "start": "node -r esm app",
+    "test": "mocha -r esm test  --timeout 5000"
   },
-  "author": "Oleksandr Martiuk",
-  "license": "MIT",
+  "author": "Martiuk Oleksandr",
+  "license": "ISC",
   "dependencies": {
     "ajv": "^6.12.2",
     "axios": "^0.19.2",

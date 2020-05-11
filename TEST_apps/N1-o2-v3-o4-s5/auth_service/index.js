@@ -2,8 +2,7 @@ import express from 'express';
 const app = express();
 
 import dotenv from 'dotenv';
-import findConfig from 'find-config';
-dotenv.config({ path: findConfig('.env') });
+dotenv.config();
 const {APP_PORT_AUTH} = process.env;
 
 import bodyParser from 'body-parser';
@@ -11,7 +10,7 @@ import cors from 'cors';
 import {router as auth} from './api/auth';
 import errorHandler from './middleware/error-handler';
 
-const morgan = require('morgan'); // TODO: update such logger
+const morgan = require('morgan');
 
 app.use(morgan('tiny'));
 app.use(bodyParser.json({ limit: '100mb' }));
