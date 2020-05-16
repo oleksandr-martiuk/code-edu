@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do work</title>
+</head>
+<body>
+    <button onclick="startComputation()">Start computation</button>
+
+    <script>
+    function startComputation() {
+        worker.postMessage({'cmd': 'average', 'nums': [1, 2, 3, 4]});
+    }
+
+    const worker = new Worker('doWork.js');
+
+    worker.addEventListener('message', function(e) {
+        console.log(e.data);
+    }, false);
+    
+    </script>
+</body>
+</html>

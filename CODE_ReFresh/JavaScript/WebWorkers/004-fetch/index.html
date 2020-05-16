@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Polling Example</title>
+    <style type="text/css">
+        .title, .result {
+            display: inline-block;
+            padding: 10px;
+            background-color: #fffeee;
+        }
+        .content {
+            padding: 10px;
+            background-color: #fffdd8;
+        }
+    </style>
+</head>
+<body>
+    <p>Simple polling example to detect changes in content</p>
+    <div class="result">
+        <span class="title">Loading...</span>
+        <div class="content">Loading...</div>
+    </div>
+    <script type="text/javascript">
+        //--- Creating a Web Worker Named 'pollingWorker.js' ---//
+        var pollingWorker = new Worker('pollingWorker.js');
+        
+        //--- We are Listening to the Worker ---//
+        pollingWorker.addEventListener('message', function contentReceiverFunc(e) {
+            document.querySelector('.result .title').innerText = e.data.title;
+            document.querySelector('.result .content').innerHTML = e.data.content;
+        });
+    </script>
+</body>
+</html>
