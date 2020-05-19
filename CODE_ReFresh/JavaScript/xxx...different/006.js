@@ -1,17 +1,14 @@
-yo();
-
-function yo(params) {
-    // some code here....
-    function f_cb();
+const car = {
+    wheel: 4,
+    color: 'Green'
 }
 
-function f_cb(){
-    // some code here....
-    function s_cb(err, t_cb);
-}
+// const carWithOwner = {...car, owner: 'Thor'};
+const carWithOwner = Object.create(car, {
+    owner: { value: 'Thor'}
+});
 
-
-function t_cb(err, t_cb){
-    // some code here....
-    function s_cb(err, t_cb);
-}
+console.log(carWithOwner);
+console.log(carWithOwner.__proto__);
+console.log(carWithOwner.__proto__ === car);
+console.log(Object.getOwnPropertyNames(carWithOwner));
