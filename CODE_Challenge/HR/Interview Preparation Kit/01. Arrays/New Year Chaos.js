@@ -1,25 +1,40 @@
+function swap(vp, pv, pos, val, n) {
+    const swapPos = pos + n;
+    const swapVal = pv[swapPos];
+
+    pv[swapPos] = val;
+    pv[swapPos-1] = swapVal;
+    vp[swapVal] -= 1;
+}
+
+// Complete the minimumBribes function below.
 function minimumBribes(q) {
-    const len = q.length;
-    let result = 0;
+    if (q.length < 2) {
+        console.log('Too chaotic');
+        return;
+    };
 
-    for (let name = len; name > 0; name--) {
-        const currI = q.indexOf(name);
-        const normI = name-1;
+    const [vp, pv] = getConvertedQ(q)
+    let bribes = 0;
 
-        const iDiff = normI - currI;
-        if (iDiff <= 0) {
-            continue;
-        } else if (iDiff > 2) {
-            result = 'Too chaotic';
-            break;
-        }
+    for (let v = q.length; v > 0; v--) {
+        const p = vp[v];
+        const diff = v - p;
 
-        const elem = q[currI];
-        q.splice(currI, 1);
-        q.splice(normI, 0, elem);
+        if (diff === 0) continue;
 
-        result += iDiff;
+        if (diff < 0 || diff > 2) {
+            console.log('Too chaotic');
+            return;
+        };
+
+        swap(vp, pv, p, v, 1);
+        if (diff === 2)
+            swap(vp, pv, p, v, 2);
+
+        bribes += diff;
+        vp[v] = v;
     }
 
-    console.log(result);
+    console.log(bribes);
 }
