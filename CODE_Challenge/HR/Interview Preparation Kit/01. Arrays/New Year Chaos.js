@@ -38,4 +38,3 @@ function minimumBribes(q) {
 
     console.log(bribes);
 }
-
