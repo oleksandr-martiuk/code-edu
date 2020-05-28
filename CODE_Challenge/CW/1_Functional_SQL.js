@@ -7,22 +7,22 @@ const query = function() {
 
     function select (funcFields = null) {
         selectCond = funcFields;
-        return {from, execute};
+        return { from, execute };
     }
     function from (collection = []) {
         results = collection;
-        return {select, execute, where, groupBy};
+        return { select, execute, where, groupBy };
     }
     function where (whereFunc = null) {
         whereCond = whereFunc;
-        return {from, execute};
+        return { from, groupBy, execute };
     }
     function orderBy () {
         return {};
     }
     function groupBy (groupByFunc = null) {
         groupByCond = groupByFunc;
-        return {execute};
+        return { execute };
     }
     function having () {
         return {};
@@ -30,40 +30,52 @@ const query = function() {
     function execute () {
         if (whereCond)
             results = results.filter(whereCond);
+        if (groupByCond) {
+            const acc = {};
+            for (let record of results) {
+                const key = groupByCond(record);
+                if (!acc[key]) acc[key] = []
+                acc[key].push(record);
+            }
+            const groupNames = Object.keys(acc);
+            if (groupNames.length) {
+                const groupedFields = [];
+                groupNames.map(name => groupedFields.push([name, acc[name]]));
+                results = groupedFields;
+            }
+        }
         if (selectCond)
             results = results.map(selectCond);
-        if (groupByCond)
-            results = results;  // updates results by Groups
 
         return results;
     }
 
-    return {select, from, execute, where};
-};
+    return { select, from, execute, where };
+}
 
-// -----------------------------------------------------------------------------------
+// ----------------------------------------------------------------------
 
 var numbers = [1, 2, 3];
 
 const q_001 = query().select().from(numbers).execute();
-console.log('[1,2,3]' === JSON.stringify(q_001));
+console.log('001. ', '[1,2,3]' === JSON.stringify(q_001));
 
 // 'No FROM clause produces empty array'
 const q_002 = query().select().execute();
-console.log('[]' === JSON.stringify(q_002));
+console.log('002. ', '[]' === JSON.stringify(q_002));
 
 // 'SELECT can be omited'
 const q_003 = query().from(numbers).execute();
-console.log('[1,2,3]' === JSON.stringify(q_003));
+console.log('003. ', '[1,2,3]' === JSON.stringify(q_003));
 
 const q_004 = query().execute();
-console.log('[]' === JSON.stringify(q_002));
+console.log('004. ', '[]' === JSON.stringify(q_002));
 
 // 'The order does not matter'
 const q_005 = query().from(numbers).select().execute();
-console.log('[1,2,3]' === JSON.stringify(q_005));
+console.log('005. ', '[1,2,3]' === JSON.stringify(q_005));
 
-// -----------------------------------------------------------------------------------
+// ----------------------------------------------------------------------
 
 var persons = [
     {name: 'Peter', profession: 'teacher', age: 20, maritalStatus: 'married'},
@@ -76,36 +88,36 @@ var persons = [
 ];
 
 const q_006 = query().select().from(persons).execute();
-console.log(JSON.stringify(persons) === JSON.stringify(q_006));
+console.log('006. ', JSON.stringify(persons) === JSON.stringify(q_006));
 
 const profession = (person) => person.profession;   // 'SELECT' FUNCTION
 
 const q_007 = query().select(profession).from(persons).execute();
 const r007 = ["teacher","teacher","teacher","scientific","scientific","scientific","politician"];
-console.log(JSON.stringify(r007) === JSON.stringify(q_007));
+console.log('007. ', JSON.stringify(r007) === JSON.stringify(q_007));
 
 // 'No FROM clause produces empty array'
 const q_008 = query().select(profession).execute();
-console.log('[]' === JSON.stringify(q_008));
+console.log('008. ', '[]' === JSON.stringify(q_008));
 
 const isTeacher = (person) => (person.profession === 'teacher');    // 'WHERE' FUNCTION
 
 // SELECT profession FROM persons WHERE profession="teacher" 
 const q_009 = query().select(profession).from(persons).where(isTeacher).execute();
-console.log('["teacher","teacher","teacher"]' === JSON.stringify(q_009));
+console.log('009. ', '["teacher","teacher","teacher"]' === JSON.stringify(q_009));
 
 //SELECT * FROM persons WHERE profession="teacher" 
 const q_010 = query().from(persons).where(isTeacher).execute();
-console.log(JSON.stringify(persons.slice(0, 3)) === JSON.stringify(q_010));
+console.log('010. ', JSON.stringify(persons.slice(0, 3)) === JSON.stringify(q_010));
 
 const name = (person) => person.name;
 
 // SELECT name FROM persons WHERE profession="teacher" 
 const q_011 = query().select(name).from(persons).where(isTeacher).execute();
-console.log(JSON.stringify(["Peter", "Michael", "Peter"]) === JSON.stringify(q_011));
+console.log('011. ', JSON.stringify(["Peter", "Michael", "Peter"]) === JSON.stringify(q_011));
 
 const q_012 = query().where(isTeacher).from(persons).select(name).execute()
-console.log(JSON.stringify(["Peter", "Michael", "Peter"]) === JSON.stringify(q_012));
+console.log('012. ', JSON.stringify(["Peter", "Michael", "Peter"]) === JSON.stringify(q_012));
 
 // SELECT * FROM persons GROUPBY profession <- Bad in SQL but possible in JavaScript
 const q_013 = query().select().from(persons).groupBy(profession).execute()
@@ -124,29 +136,53 @@ const r013 = [
         {"name":"Anna","profession":"politician","age":50,"maritalStatus":"married"}
     ]]
 ];
-console.log(JSON.stringify(r013) === JSON.stringify(q_013));
+console.log('013. ', JSON.stringify(r013) === JSON.stringify(q_013));
 
-//       function isTeacher(person) {
-//         return person.profession === 'teacher';
-//       }
-      
-//       //SELECT * FROM persons WHERE profession='teacher' GROUPBY profession
-//       const q_001 = query().select().from(persons).where(isTeacher).groupBy(profession).execute(),  [["teacher",[{"name":"Peter","profession":"teacher","age":20,"maritalStatus":"married"},{"name":"Michael","profession":"teacher","age":50,"maritalStatus":"single"},{"name":"Peter","profession":"teacher","age":20,"maritalStatus":"married"}]]]); 
+// SELECT * FROM persons WHERE profession='teacher' GROUPBY profession
+const q_014 = query().select().from(persons).where(isTeacher).groupBy(profession).execute()
+const r014 = [
+    [ "teacher", [
+        {"name":"Peter","profession":"teacher","age":20,"maritalStatus":"married"},
+        {"name":"Michael","profession":"teacher","age":50,"maritalStatus":"single"},
+        {"name":"Peter","profession":"teacher","age":20,"maritalStatus":"married"}
+    ]
+]];
+console.log('014. ', JSON.stringify(r014) === JSON.stringify(q_014));
 
-//       function professionGroup(group) {
-//         return group[0];
-//       }
-      
-//       //SELECT profession FROM persons GROUPBY profession
-//       const q_001 = query().select(professionGroup).from(persons).groupBy(profession).execute(), ["teacher","scientific","politician"]);
+const professionGroup = (group) => group[0];
+//SELECT profession FROM persons GROUPBY profession
+const q_015 = query().select(professionGroup).from(persons).groupBy(profession).execute();
+console.log('015. ', JSON.stringify(["teacher","scientific","politician"]) === JSON.stringify(q_015));
 
-//       function name(person) {
-//         return person.name;
-//       }
-      
-//       //SELECT * FROM persons WHERE profession='teacher' GROUPBY profession, name
-//       const q_001 = query().select().from(persons).groupBy(profession, name).execute(),  [["teacher",[["Peter",[{"name":"Peter","profession":"teacher","age":20,"maritalStatus":"married"},{"name":"Peter","profession":"teacher","age":20,"maritalStatus":"married"}]],["Michael",[{"name":"Michael","profession":"teacher","age":50,"maritalStatus":"single"}]]]],["scientific",[["Anna",[{"name":"Anna","profession":"scientific","age":20,"maritalStatus":"married"},{"name":"Anna","profession":"scientific","age":20,"maritalStatus":"single"}]],["Rose",[{"name":"Rose","profession":"scientific","age":50,"maritalStatus":"married"}]]]],["politician",[["Anna",[{"name":"Anna","profession":"politician","age":50,"maritalStatus":"married"}]]]]]
-// );
+const name = (person) => person.name;      
+
+//SELECT * FROM persons WHERE profession='teacher' GROUPBY profession, name
+const q_016 = query().select().from(persons).groupBy(profession, name).execute()
+const r016 = [
+    ["teacher",[
+        ["Peter",[
+            {"name":"Peter","profession":"teacher","age":20,"maritalStatus":"married"},
+            {"name":"Peter","profession":"teacher","age":20,"maritalStatus":"married"}
+        ]],
+        ["Michael",[
+            {"name":"Michael","profession":"teacher","age":50,"maritalStatus":"single"}
+        ]]
+    ]],
+    ["scientific",[
+        ["Anna",[
+            {"name":"Anna","profession":"scientific","age":20,"maritalStatus":"married"},
+            {"name":"Anna","profession":"scientific","age":20,"maritalStatus":"single"}
+        ]],
+        ["Rose",[
+            {"name":"Rose","profession":"scientific","age":50,"maritalStatus":"married"}
+        ]]
+    ]],
+    ["politician",[
+        ["Anna",[
+            {"name":"Anna","profession":"politician","age":50,"maritalStatus":"married"}
+        ]]
+    ]]
+];
 
 //       function age(person) {
 //         return person.age;
