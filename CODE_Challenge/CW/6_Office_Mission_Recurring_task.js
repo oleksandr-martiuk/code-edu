@@ -17,6 +17,7 @@ function isLeap(y){
         return false;
 }
 
+
 function countLeaps(totalYeas){
     let leaps = 0;
     for (let i = 0; i < totalYeas; i++) {
