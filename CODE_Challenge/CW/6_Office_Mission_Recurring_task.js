@@ -6,7 +6,6 @@ const md = {
 
 const getParsedDate = (dateStr) => dateStr.split('/');
 
-// some comment for the 'isLeap' function
 function isLeap(y){
     if (y % 400 === 0)
         return true;
@@ -17,7 +16,6 @@ function isLeap(y){
     else 
         return false;
 }
-
 
 function countLeaps(totalYeas){
     let leaps = 0;
