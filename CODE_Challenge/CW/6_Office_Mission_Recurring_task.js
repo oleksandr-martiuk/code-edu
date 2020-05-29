@@ -6,6 +6,7 @@ const md = {
 
 const getParsedDate = (dateStr) => dateStr.split('/');
 
+// some comment for the 'isLeap' function
 function isLeap(y){
     if (y % 400 === 0)
         return true;
