@@ -1,0 +1,54 @@
+<!--display: flex;            (задает испльзование flexbox для HTML + CSS) -->
+<!--align-items: center;      (задает выравнение блоков по высоте внутри flexbox относительно других блоков)-->
+<!--                          (align-items: stretch; - по умолчанию)-->
+<!--flex: 1;                  (задает ширину блоков в ряде)-->
+<!--order: 0;                 (порядок блок в flexbox)-->
+<!--flex-direction: column;   (рассположение items вертикально/горзонтально)-->
+
+<style>
+   body {
+      margin: 0;
+      background-color: #212121;
+   }
+   /*--------------------------*/
+   .container {
+      display: flex;
+      padding: 10px;
+   }
+   .box {
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 0 10px;
+      margin: 2px;
+      background-color: greenyellow;
+      text-align: justify;
+   }
+   .box1 {
+      flex: 1;
+   }
+   .box2 {
+      flex: 1;
+   }
+   .box3 {
+      flex: 1;
+   }
+</style>
+
+<div class="container">
+   <div class="box box1">
+      <h3>Box 01</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci commodi consectetur corporis cupiditate dignissimos ducimus eum illo illum ipsam neque possimus provident quaerat qui quibusdam ratione rerum, sit. Libero.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, impedit, ullam. Aut consequatur cupiditate delectus esse exercitationem modi neque nesciunt odit, praesentium quaerat quam quia ratione saepe tempora totam, voluptates.</p>
+   </div>
+   <div class="box box2">
+      <h3>Box 02</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem ducimus eligendi fuga impedit odio quas quos saepe similique sint voluptates. Accusamus accusantium, assumenda blanditiis nemo non praesentium soluta. Blanditiis, ea.</p>
+   </div>
+   <div class="box box3">
+      <h3>Box 03</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus, ad aliquid amet aperiam architecto asperiores consequuntur, dolore doloribus ea facere iusto molestias nam perspiciatis qui repellendus sint unde vel.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p>Cupiditate debitis perspiciatis velit! Aperiam consequuntur dignissimos dolore doloribus ducimus eaque eum facilis inventore, ipsa veritatis! Eos expedita iure perspiciatis quibusdam vero.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores at autem commodi corporis deserunt doloribus ea eveniet laboriosam laudantium natus nemo, nisi non pariatur quia quidem rem, similique ullam voluptatum.</p>
+   </div>
+</div>
