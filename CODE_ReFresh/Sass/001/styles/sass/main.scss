@@ -1,0 +1,36 @@
+// COMMAND LINE: sass --watch styles/sass/main.scss:styles/css/main.css
+
+body {
+   background-color: #232323;
+}
+
+.container {
+   display: flex;
+}
+
+.box {
+   margin: 3px;
+
+   background-color: greenyellow;
+   text-align: justify;
+   padding: 5px;
+   border: 1px solid white;
+   border-radius: 5px;
+
+   .select-text-1 {
+      font-weight: bolder;
+      text-transform: uppercase;
+      color: darkred;
+   }
+   .child-block {
+      .select-text-2 {
+         background-color: whitesmoke;
+         border: 1px solid black;
+         white-space: pre;
+      }
+      &:hover {
+         text-decoration: underline;
+         cursor: pointer;
+      }
+   }
+}
