@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <title>Hello React</title>
+      <style></style>
+   </head>
+   <body>
+      <div id="app"></div>
+
+      <script crossorigin src="../000_react_babel/react.production.min.js"></script>
+      <script crossorigin src="../000_react_babel/react-dom.production.min.js"></script>
+      <script src="../000_react_babel/babel.min.js"></script>
+
+      <script type="text/babel">
+         const GreetButton = () => {
+            const [greetings, setGreetings] = this.useState(['Hello, Hi, How are you, You are welcom']);
+
+            const hello = () => console.log('Hello friend!');
+
+            return (<div>{
+               greetings.map(greeting => <p>{greeting}</p>)
+            }</div>);
+         }
+
+         ReactDOM.render(
+            <GreetButton />,
+            document.getElementById("app")
+         )
+      </script>
+
+   </body>
+</html>
