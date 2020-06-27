@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <title>Hello React</title>
+   </head>
+   <body>
+      <div id="app"></div>
+
+      <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+      <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+      <script src="../000_react_babel/babel.min.js"></script>
+
+      <script type="text/babel">
+         const ChatAPI = {
+            subscribeToFriendStatus: (id, cb) => {
+               console.log('subscribe');
+            },
+            unsubscribeFromFriendStatus: (id, cb) => {
+               console.log('UN subscribe');
+            }
+         }
+
+         const FriendStatusWithCounter = (props) => {
+            const [count, setCount] = this.useState(0);
+            this.useEffect(() => {
+               document.title = `You clicked ${count} times`;
+            });
+
+            const [isOnline, setIsOnline] = this.useState(null);
+
+            this.useEffect(() => {
+               function handleStatusChange(onlineStatus) {
+                  setIsOnline(onlineStatus);
+               }
+
+               ChatAPI.subscribeToFriendStatus(props.friendId, handleStatusChange);
+
+               return () => {
+                  ChatAPI.unsubscribeFromFriendStatus(props.friendId, handleStatusChange);
+               };
+            });
+         }
+
+         ReactDOM.render(
+            <FriendStatusWithCounter friendId={55}/>,
+            document.getElementById("app")
+         )
+      </script>
+
+   </body>
+</html>
