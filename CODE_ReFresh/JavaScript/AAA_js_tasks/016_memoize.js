@@ -19,7 +19,10 @@ const memoize = fn => {
 
 const getPerson = (fName, sName, age) => {
    let i = 0;
-   while(i < 2000000000) i++;
+   while(i < 1000000001) {
+      if (i % 500000000 === 0) console.log(i);
+      i++;
+   }
    return `${fName} ${sName} (${age})`;
 }
 
