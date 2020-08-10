@@ -16,7 +16,12 @@ function elderAge(m,n,l,t) {
   sum -= (m*n - zero) * l; // lost of seconds
   console.log(`sum (l=${l}) =${sum}`);
   if (sum >= t) sum -= t;  // lost big amount of time
-  console.log(`sum (t=${t}) =${sum}`);
+    console.log(`sum (t=${t}) =${sum}`);
 
   return sum;
 }
+
+const result = elderAge(8, 5, 1, 100);
+
+console.log('=========================================');
+console.log(result);
