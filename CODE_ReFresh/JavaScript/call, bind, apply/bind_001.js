@@ -8,6 +8,6 @@ function fullName(greeting, firstName) {
    console.log(greeting, firstName, this.lastName);
 }
 
-var bindFullName = fullName.bind(person, "Mr");
+var bindFullName = fullName.bind(person);
 
 bindFullName("Jared");
