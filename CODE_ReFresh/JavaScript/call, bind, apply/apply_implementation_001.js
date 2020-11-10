@@ -4,9 +4,7 @@ Function.prototype.myApply = function(context, args = null) {
    const symKey = Symbol();
    context[symKey] = this;
 
-   setTimeout(() => {
-      delete context[symKey];
-   }, 1000);
+   setTimeout(() => (delete context[symKey]), 100);
 
    return context[symKey](args);
 }
