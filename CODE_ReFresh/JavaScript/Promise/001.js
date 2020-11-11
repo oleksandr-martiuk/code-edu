@@ -1,18 +1,29 @@
 const delayP = new Promise(resolve => {
-    console.log('delay - start');
+    console.log('[D] delay: start of function');
     setTimeout(() => {
         resolve(5);
-        console.log('delay - finish');
+        console.log('[D] delay: finish');
     }, 2000);
+    console.log('[D] delay: end of function');
 })
 
 const promise = new Promise(resolve => {
-    console.log('promise - start');
-    const result = delayP.then(result => result);
+    console.log('[-P-] promise: start of function');
+    const result = delayP
+        .then(result => {
+            console.log(`[-P-] promise: result: ${result}`);
+            return result;
+        });
     resolve(result);
-    console.log('promise - finish');
+    console.log('[-P-] promise: end of function');
 });
 
+console.log('--------------------------------------------');
+
 promise
-    .then(result => console.log('Done: ', result))
-    .catch(err => console.log('---- ERROR ----: '));
+    .then(result => {
+        console.log('[...] then:--> Done: ', result)
+    })
+    .catch(err => {
+        console.log('[...] ---- ERROR ----: ')
+    });
