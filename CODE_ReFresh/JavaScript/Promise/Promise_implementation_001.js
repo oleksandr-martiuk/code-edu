@@ -136,19 +136,17 @@ function doResolve(fn, onFulfilled, onRejected) {
 // }
 
 function fetchSomething(){
-   setTimeout(function() {
+   console.log('fetchSomething: start function');
+   setTimeout(() => {
+      console.log('inside of setTimeout');
       return { greeting: 'Hello dear friend!' };
    }, 1500);
-   console.log('...before fetch');
+   console.log('fetchSomething: end function');
 }
 
 const promise = new Promise(fetchSomething);
 
-promise(function () {
-   console.log('success');
-}, function () {
-   console.log('reject');
-})
+promise
    .then(result => {
       console.log('This is result from .then: ', result)
    })
