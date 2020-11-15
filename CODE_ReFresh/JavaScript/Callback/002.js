@@ -10,7 +10,6 @@ const fun = exec => {
 
 fun(
     // () => console.log('FIRST')
-    // arg => arg(42)
     arg => arg(42)
 );
 
