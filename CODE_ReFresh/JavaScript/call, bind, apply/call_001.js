@@ -7,3 +7,4 @@ const training = {
 
 training.go(55, 'km');
 training.go.call(training.person, 55, 'km');
+training.go.call({fName: 'Yoshi', sName: 'Foo'}, 100, 'meters');
