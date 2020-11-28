@@ -92,8 +92,8 @@ const lowResParams = {
    url: 'http://some-url.com/image/low-res-png',
    resImage: { image: 'Low responsibility image' }
 }
-const lowResBanner = new BuilderLowResBanner(lowResParams); // constructing Builder
-const firstBanner = new DirectorBanner(lowResBanner); // constructing Director
+const lowResBanner = new BuilderLowResBanner(lowResParams);    // 1. constructing Builder
+const firstBanner = new DirectorBanner(lowResBanner);          // 2. constructing Director
 
 firstBanner.constructBuilder();
 firstBanner.renderBanner();

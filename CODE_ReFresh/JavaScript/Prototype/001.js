@@ -1,7 +1,7 @@
 // 'Hello'.run();
 
 String.prototype.run = () => {
-    const str = 'HELLO FROM functon run()';
+    const str = 'HELLO from function run()';
     return str;
 };
 
