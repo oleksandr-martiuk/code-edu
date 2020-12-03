@@ -1,17 +1,31 @@
-const car = {
-  wheels: 4,
+const personPrototype = {
+   sayHi: function() {
+      console.log("Hello, my name is " + this.name + ", and I am " + this.age);
+   },
+   sayBye: function() {
+      console.log("Bye Bye!");
+   }
+};
 
-  init() {
-    console.log(`У меня есть ${this.wheels} колеса, мой владелец ${this.owner}`)
-  }
+function Person(name, age) {
+   name = name || "John Doe";
+   age = age || 26;
+
+   function constructorFunction(name, age) {
+      this.name = name;
+      this.age = age;
+   }
+
+   constructorFunction.prototype = personPrototype;
+
+   const instance = new constructorFunction(name, age);
+   return instance;
 }
 
-const carWithOwner = Object.create(car, {
-  owner: {
-    value: 'Дмитрий'
-  }
-})
+const person1 = Person();
+const person2 = Person("Bob", 38);
 
-console.log(carWithOwner.__proto__ === car)
-
-carWithOwner.init()
+// prints out Hello, my name is John Doe, and I am 26
+person1.sayHi();
+// prints out Hello, my name is Bob, and I am 38
+person2.sayHi();
