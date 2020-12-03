@@ -18,5 +18,3 @@ console.log(mongo.getData())
 
 const mysql = new Database('MySQL')
 console.log(mysql.getData())
-
-
