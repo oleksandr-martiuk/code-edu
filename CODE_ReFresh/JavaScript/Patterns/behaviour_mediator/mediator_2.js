@@ -40,6 +40,6 @@ const sasha = new Customer('Sasha', mediator);
 const pavel = new Customer('Pavel', mediator);
 
 sasha.makeOrder('Tesla', 'With autopilot');
-pavel.makeOrder('Audi', 'With parktronic');
+pavel.makeOrder('Audi', 'With parking sensor');
 
 console.log(mediator.getCustomerList());
