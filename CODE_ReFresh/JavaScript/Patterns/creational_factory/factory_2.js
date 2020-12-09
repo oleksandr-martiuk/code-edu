@@ -34,7 +34,6 @@ class UserFactory {
 
 const userFactory = new UserFactory();
 
-
 const user = userFactory.create('user', ['Bob', 74]);
 user.getUser();
 

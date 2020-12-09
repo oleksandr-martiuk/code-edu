@@ -16,7 +16,7 @@ class Archer {
    }
 }
 
-class EnemyFactory{
+class EnemyFactory {
    constructor() {
       this.createEnemy = function(type) {
          let enemy;
