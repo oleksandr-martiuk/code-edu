@@ -1,4 +1,4 @@
-import bCrypt from 'bcrypt';
+// import bCrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import Repository from "../../app-data-layer/repository";
 import {ErrorConflict, ErrorUnauthorized, ErrorNotFound} from '../lib/errors';
@@ -32,8 +32,10 @@ export default class Auth {
     }
 
     async prepareUserFields (login, password, email) {
-        const salt = await bCrypt.genSalt(+process.env.ROUNDS);
-        const hashedPass = await bCrypt.hash(password, salt);
+        // TODO: temporary SOLUTION related to vulnerabilities with 'bCrypt'
+        // const salt = await bCrypt.genSalt(+process.env.ROUNDS);
+        // const hashedPass = await bCrypt.hash(password, salt);
+        const hashedPass = '';
 
         const userFields = {
             login,
@@ -50,7 +52,10 @@ export default class Auth {
             throw new ErrorNotFound(`User '${login}' doesn't exist`);
         }
 
-        const passResult = await bCrypt.compare(password, user.password);
+        // TODO: temporary SOLUTION related to vulnerabilities with 'bCrypt'
+        // const passResult = await bCrypt.compare(password, user.password);
+        const passResult = true;
+
         if (!passResult) {
             throw new ErrorUnauthorized(`Password is not correct`);
         }
