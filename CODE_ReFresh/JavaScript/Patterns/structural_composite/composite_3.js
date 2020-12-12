@@ -1,26 +1,19 @@
-class NodeComposition {
-   add (child) {
-      this.children.push(child);
-   }
-
-   remove(child) {
-      this.children = this.children.filter(item => item !== child);
-   }
-
-   getChild (child) {
-      return this.children.find(item => item === child);
-   }
-
-   hasChildren() {
-      return !!this.children.length;
-   }
-}
-
-class Node extends NodeComposition {
+class Node {
    constructor(name) {
-      super();
       this.children = [];
       this.name = name;
+   }
+   add(child) {
+      this.children.push(child);
+   }
+   remove(child){
+      this.children = this.children.filter(item => item !== child);
+   }
+   getChild(child){
+      return this.children.find(item => item === child);
+   }
+   hasChildren(){
+      return !!this.children.length;
    }
 }
 
