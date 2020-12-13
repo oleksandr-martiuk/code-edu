@@ -21,8 +21,8 @@ class Singleton {
 
 const single = new Singleton();
 
-const man = single.getInstance({ name: 'Yoko', age: 88, city: 'Fen-shu' });
-const women = single.getInstance({ name: 'LeeLu', age: 74, city: 'Shtraverswill' });
+const man = single.getInstance({ name: 'Yoko', age: 88, city: 'Shanghai' });
+const women = single.getInstance({ name: 'LeeLu', age: 74, city: 'Washington' });
 
 console.log(man);
 console.log(women); // getting previous instance of Singleton
