@@ -3,7 +3,7 @@ function networkFetch(url) {
 }
 
 const cache = new Set()
-const proxiedFetch = new Proxy(networkFetch, {
+const peroxideFetch = new Proxy(networkFetch, {
   apply(target, thisArg, args) {
     const url = args[0]
     if (cache.has(url)) {
@@ -15,6 +15,6 @@ const proxiedFetch = new Proxy(networkFetch, {
   }
 })
 
-console.log(proxiedFetch('angular.io'))
-console.log(proxiedFetch('react.io'))
-console.log(proxiedFetch('angular.io'))
+console.log(peroxideFetch('angular.io'))
+console.log(peroxideFetch('react.io'))
+console.log(peroxideFetch('angular.io'))
