@@ -24,10 +24,10 @@ class UserDecorator {
    }
    who(){
       console.log(`
-            Hello dear friends!
-            My name is ${this.name}.
-            I live in ${this.city}. On the street: "${this.house}th ${this.street}".
-        `);
+         Hello dear friends!
+         My name is ${this.name}.
+         I live in ${this.city}. On the street: "${this.house}th ${this.street}".
+     `);
    }
 }
 

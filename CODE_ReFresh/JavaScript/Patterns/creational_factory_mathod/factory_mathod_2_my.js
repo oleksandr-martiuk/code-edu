@@ -2,15 +2,9 @@ class QFactory {
    create(qType) {
       let quadcopter = {}
 
-      if (qType === 'multi-rotors') {
-         quadcopter = new MultiRotors();
-      }
-      else if (qType === 'single-rotor') {
-         quadcopter = new SingleRotor();
-      }
-      else if (qType === 'fixed-wings') {
-         quadcopter = new FixedWings();
-      }
+      if (qType === 'multi-rotors')       quadcopter = new MultiRotors();
+      else if (qType === 'single-rotor')  quadcopter = new SingleRotor();
+      else if (qType === 'fixed-wings')   quadcopter = new FixedWings();
 
       quadcopter.getParameters = () => {
          console.log(`This is parts of '${quadcopter.type}' quadcopter:\n`);

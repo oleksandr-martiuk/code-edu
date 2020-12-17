@@ -129,10 +129,10 @@ class ShopDirectorPrintScan {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 // 0. Customer work:
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-const notebookBuilderZ05 = new NotebookBuilderZ05('Quadro');   // 1. Клиент делает запросс конкретному строителю
-const baseCompDirector = new ShopDirectorBase();
-baseCompDirector.construct(notebookBuilderZ05);                      // 2. Конкретный директор задает процедуру постройки
-const notebookResult = notebookBuilderZ05.getComputer();             // 3. Строитель отдает резульатат клиенту
+const notebookBuilderZ05 = new NotebookBuilderZ05('Quadro');   // 1. Клиент делает запросс для конкретного строителя
+const baseCompDirector = new ShopDirectorBase();                     // 2. Конкретный директор задает процедуру постройки
+baseCompDirector.construct(notebookBuilderZ05);
+const notebookResult = notebookBuilderZ05.getComputer();             // 3. Строитель отдает результат клиенту
 console.log(notebookResult);
 
 const desktopBuilderM133 = new DesktopBuilderM133('Alex');

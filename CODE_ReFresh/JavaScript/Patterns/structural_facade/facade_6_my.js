@@ -11,7 +11,7 @@ class Power {
    }
 }
 
-class FlyController {
+class Controller {
    constructor(model = 'Default', version = '0.0.1') {
       this.model = model;
       this.version = version;
@@ -51,7 +51,7 @@ class Quadcopter {
    constructor(name = ''){
       this.name = name;
       this.power = new Power();
-      this.flyController = new FlyController();
+      this.flyController = new Controller();
       this.engine = new Engine();
       this.status = null;
    }

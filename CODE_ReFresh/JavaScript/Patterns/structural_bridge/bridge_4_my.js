@@ -14,7 +14,7 @@ class AdvancedController {
    loop = () => console.log("A-a-a-nd loop! :)");
 }
 
-class FlyGadget {
+class Gadget {
    constructor(controller) {
       this.c = controller;
    }
@@ -28,13 +28,13 @@ class FlyGadget {
    }
 }
 
-class Quadcopter extends FlyGadget {
+class Quadcopter extends Gadget {
    constructor(controller) {
       super(controller);
    }
 }
 
-class Helicopter extends FlyGadget {
+class Helicopter extends Gadget {
    constructor(controller) {
       super(controller);
    }
