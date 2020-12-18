@@ -60,7 +60,7 @@ bank.setNext(paypal)
 paypal.setNext(bitcoin)
 
 // Начнём с банка
-bank.pay(259)
+bank.pay(275)
 
 // Cannot pay using bank. Proceeding ..
 // Cannot pay using paypal. Proceeding ..:
