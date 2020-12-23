@@ -21,6 +21,8 @@ class Component extends ComponentWithContextualHelp {
    }
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 // abstract class 'Container'
 class Container extends Component {
    constructor() {
@@ -33,9 +35,13 @@ class Container extends Component {
    }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+class Button extends Component {
+   constructor() {
+      super();
+   }
+}
 
-class Button extends Component {}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 class Panel extends Container {
    constructor() {
