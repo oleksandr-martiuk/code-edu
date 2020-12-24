@@ -46,13 +46,13 @@ const roman = 'MCMXXVIII';
 const context = new Context(roman);
 const tree = [];
 
-tree.push(new Expression('thousand', 'M', '', '', '', 1000));
-tree.push(new Expression('hundred', 'C', 'CD', 'D', 'CM', 100));
-tree.push(new Expression('ten', 'X', 'XL', 'L', 'XC', 10));
-tree.push(new Expression('one', 'I', 'IV', 'V', 'IX', 1));
+tree.push(new Expression('thousand',   'M', ' ',   ' ',  ' ',  1000));
+tree.push(new Expression('hundred',    'C', 'CD',  'D',  'CM', 100));
+tree.push(new Expression('ten',        'X', 'XL',  'L',  'XC', 10));
+tree.push(new Expression('one',        'I', 'IV',  'V',  'IX', 1));
 
-for (const i in tree) {
-   tree[i].interpret(context);
-}
+tree.forEach((item, i) => {
+   tree[i].interpret(context)
+});
 
 console.log(roman + " = " + context.output);
