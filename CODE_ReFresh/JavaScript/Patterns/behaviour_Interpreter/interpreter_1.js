@@ -3,9 +3,7 @@ class Context {
       this.input = input;
       this.output = 0;
    }
-   startsWith(str) {
-      return this.input.substr(0, str.length) === str;
-   }
+   startsWith = (str) => this.input.startsWith(str);
 }
 
 class Expression {
@@ -18,9 +16,8 @@ class Expression {
       this.multiplier = multiplier;
    }
    interpret(context) {
-      if (context.input.length === 0) {
-         return;
-      }
+      if (!context.input.length) return;
+
       else if (context.startsWith(this.nine)) {
          context.output += (9 * this.multiplier);
          context.input = context.input.substr(2);
@@ -42,7 +39,8 @@ class Expression {
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-const roman = 'MCMXXVIII';
+// const roman = 'MMMDCLXXVIII'; // 3678
+const roman = 'MMXXI'; // 2021
 const context = new Context(roman);
 const tree = [];
 
@@ -51,8 +49,6 @@ tree.push(new Expression('hundred',    'C', 'CD',  'D',  'CM', 100));
 tree.push(new Expression('ten',        'X', 'XL',  'L',  'XC', 10));
 tree.push(new Expression('one',        'I', 'IV',  'V',  'IX', 1));
 
-tree.forEach((item, i) => {
-   tree[i].interpret(context)
-});
+tree.forEach(item => item.interpret(context));
 
 console.log(roman + " = " + context.output);
