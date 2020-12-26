@@ -43,5 +43,3 @@ const gen = generator(['This', 'is', 'iterator'])
 console.log(gen.next().value)
 console.log(gen.next().value)
 console.log(gen.next().value)
-
-
