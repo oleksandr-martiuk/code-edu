@@ -32,11 +32,10 @@ class Customer {
    }
 }
 //----------------------------------------------------------------------------------------------------------------------
-// TODO: how to use?
 
 const mediator = new OfficialDealer();
 
-const sasha = new Customer('Sasha', mediator);
+const sasha = new Customer('Igor', mediator);
 const pavel = new Customer('Pavel', mediator);
 
 sasha.makeOrder('Tesla', 'With autopilot');

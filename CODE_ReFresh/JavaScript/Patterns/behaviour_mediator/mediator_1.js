@@ -36,7 +36,7 @@ class ChatRoom {
   }
 }
 
-const vlad = new User('Vladilen')
+const vlad = new User('Vlad')
 const lena = new User('Elena')
 const igor = new User('Igor')
 
@@ -48,4 +48,4 @@ room.register(igor)
 
 vlad.send('Hello!', lena)
 lena.send('Hello hello!', vlad)
-igor.send('Vsem privet')
+igor.send('Hi everybody')

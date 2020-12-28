@@ -46,12 +46,15 @@ chatroom.register(john);
 chatroom.register(paul);
 chatroom.register(ringo);
 
-yoko.send("All you need is love.");
-console.log('-------------------------------------')
-yoko.send("I love you John.");
-console.log('-------------------------------------')
-john.send("Hey, no need to broadcast", yoko);
-console.log('-------------------------------------')
-paul.send("Ha, I heard that!");
-console.log('-------------------------------------')
-ringo.send("Paul, what do you think?", paul);
+
+const charOperations = [
+   { from: yoko, args: ['All you need is love.'] },
+   { from: yoko, args: ['I love you John.'] },
+   { from: john, args: ['Hey, no need to broadcast', yoko] },
+   { from: ringo, args: ['Paul, what do you think?', paul] }
+];
+
+charOperations.forEach(({ from, args }) => {
+   from.send(...args);
+   console.log('-------------------------------------');
+});
