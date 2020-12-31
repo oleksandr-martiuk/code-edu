@@ -3,11 +3,10 @@ class StrategyManager {
     this._strategies = [];
   }
   addStrategy(strategy) {
-    this._strategies = [...this._strategies, strategy];
+    this._strategies.push(strategy);
   }
   getStrategy(name) {
-    const result = this._strategies.find(strategy => strategy._name === name);
-    return result;
+    return this._strategies.find(strategy => strategy._name === name);
   }
 }
 
@@ -16,13 +15,13 @@ class Strategy {
     this._name = name;
     this._handler = handler;
   }
-
   doAction(){
     this._handler();
   }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
+
 // Initialization of strategy (strategy builder)
 const strategyManager = new StrategyManager();
 const strategy1 = new Strategy('strategy1', () => console.log('Strategy1'));
@@ -42,6 +41,5 @@ s2.doAction();
 try {
   s3.doAction();
 } catch (err) {
-  console.error('Caught an Error');
-  console.error(err);
+  console.error(`Caught an ERROR: ${err.message}`);
 }

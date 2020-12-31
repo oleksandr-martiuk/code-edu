@@ -8,30 +8,21 @@ class RedLight extends Light {
   constructor() {
     super('red')
   }
-
-  sign() {
-    return 'СТОП'
-  }
+  sign = () => 'Stop!'
 }
 
 class YellowLight extends Light {
   constructor() {
     super('yellow')
   }
-
-  sign() {
-    return 'ГОТОВЬСЯ'
-  }
+  sign = () => 'Ready?'
 }
 
 class GreenLight extends Light {
   constructor() {
     super('green')
   }
-
-  sign() {
-    return 'ЕДЬ!'
-  }
+  sign = () => 'Go...'
 }
 
 class TrafficLight {
@@ -60,7 +51,10 @@ class TrafficLight {
   }
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 const traffic = new TrafficLight()
+
 console.log(traffic.sign())
 traffic.change()
 

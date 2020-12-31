@@ -1,27 +1,29 @@
 class Vehicle {
+  constructor(timeTaken) {
+    this.timeTaken = timeTaken;
+  }
   travelTime() {
-    return this.timeTaken
+    return this.timeTaken;
   }
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 class Bus extends Vehicle {
   constructor() {
-    super()
-    this.timeTaken = 10
+    super(10);
   }
 }
 
 class Taxi extends Vehicle {
   constructor() {
-    super()
-    this.timeTaken = 5
+    super(5);
   }
 }
 
 class Car extends Vehicle {
   constructor() {
-    super()
-    this.timeTaken = 3
+    super(3);
   }
 }
 
@@ -30,6 +32,8 @@ class Commute {
     return transport.travelTime()
   }
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 const commute = new Commute()
 
