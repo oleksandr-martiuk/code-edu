@@ -37,7 +37,6 @@ class VisitorDoes extends Visitor {
       she.cookDinner();
    }
 }
-
 class VisitorRun extends Visitor {
    visitMan(person){
       console.log(`${person.name} is running very fast`)
@@ -46,7 +45,6 @@ class VisitorRun extends Visitor {
       console.log(`${person.name} is already tired. But she looks very well! :)`)
    }
 }
-
 class VisitorDance extends Visitor {
    visitMan(person){
       console.log(`${person.name} is dancing as an elephant ;)`)

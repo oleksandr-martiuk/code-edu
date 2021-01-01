@@ -42,7 +42,6 @@ class BurgerBuilder {
    }
 }
 //----------------------------------------------------------------------------------------------------------------------
-// TODO: how to use?
 
 const myBurger = new BurgerBuilder(44);
 // const myBurger = new BurgerBuilder(0); // Burger { size: 0 }

@@ -61,7 +61,6 @@ class ComputerFacade {
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-// TODO: how to use?
 
 const computer = new ComputerFacade(new Computer(), new Mouse(), new Keyboard());
 computer.turnOn();

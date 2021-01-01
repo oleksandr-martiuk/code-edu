@@ -86,7 +86,6 @@ class DirectorBanner {
 }
 
 //======================================================================================================================
-// TODO: how to use?
 
 const lowResParams = {
    url: 'http://some-url.com/image/low-res-png',
