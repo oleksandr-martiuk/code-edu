@@ -1,30 +1,30 @@
 class Sport {
-  constructor(type, result, award) {
+  constructor(type, name, surname, result, award) {
     this.type = type;
-    this.result = result || '';
-    this.award = award || null
+    this.result = result || null;
+    this.award = award || null;
+    this.name = name || null;
+    this.surname = surname || null;
   }
-  getResult() {
+  getAwardedResult() {
     if (this.award) {
-      console.log(`${this.name} ${this.surname} won "${this.award}" in "${this.type}" for the result: ${this.result}`)
+      console.log(`${this.name} ${this.surname} won "${this.award}" in "${this.type}" for the result: ${this.result}`);
     } else {
       console.log(`${this.name} ${this.surname} doesn't have any awards yet`);
     }
   }
 }
 
-class Swim extends Sport {
+class SwimSportsman extends Sport {
   constructor(name, surname, result, award) {
-    super('Swimming', result, award);
-    this.name = name;
-    this.surname = surname;
+    super('Swimming', name, surname, result, award);
   }
   train = () => console.log(`${this.name} is preparing to the Swimming championship`);
 }
 
-class Chess extends Sport {
+class ChessSportsman extends Sport {
   constructor(name, surname, result, award) {
-    super('Chess', result, award);
+    super('Chess', name, surname, result, award);
     this.name = name;
     this.surname = surname;
   }
@@ -33,8 +33,8 @@ class Chess extends Sport {
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-const alla = new Swim('Alla', 'Bergh');
-const igor = new Chess('Igor', 'Sidorov', 'mat on 63-rd minutes', '2nd pace of the WorldChampionship')
+const alla = new SwimSportsman('Alla', 'Bergh');
+const igor = new ChessSportsman('Igor', 'Sidorov', 'checkmate on move 63', '2nd place in the World Championship');
 
-alla.getResult()
-igor.getResult()
+alla.getAwardedResult();
+igor.getAwardedResult();
