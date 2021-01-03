@@ -1,6 +1,10 @@
 public interface Sedan {}
-
 public interface Coupe {}
+
+public interface CarsFactory {
+   Sedan createSedan();
+   Coupe createCoupe();
+}
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -26,13 +30,6 @@ public class FordSedan implements Sedan {
     public FordSedan() {
         System.out.println("Create FordSedan");
     }
-}
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-public interface CarsFactory {
-   Sedan createSedan();
-   Coupe createCoupe();
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
