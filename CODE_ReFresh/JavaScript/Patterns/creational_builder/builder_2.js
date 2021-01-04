@@ -26,7 +26,7 @@ class Banner {
 //----------------------------------------------------------------------------------------------------------------------
 // TODO: creating builders related to the base class 'Banner'
 
-class BuilderBanner {
+class BannerBuilder {
    constructor(params) {
       this.banner = new Banner(params);
    }
@@ -35,7 +35,7 @@ class BuilderBanner {
    }
 }
 
-class BuilderHighResBanner extends BuilderBanner {
+class HighResBannerBuilder extends BannerBuilder {
    constructor(params) {
       super({...params, description: 'High responsibility banner'});
    }
@@ -50,7 +50,7 @@ class BuilderHighResBanner extends BuilderBanner {
    }
 }
 
-class BuilderLowResBanner extends BuilderBanner {
+class LowResBannerBuilder extends BannerBuilder {
    constructor(params) {
       super({ ...params, description: 'Low responsibility banner' });
    }
@@ -68,9 +68,9 @@ class BuilderLowResBanner extends BuilderBanner {
 //----------------------------------------------------------------------------------------------------------------------
 // TODO: creating Director for managing our builders
 
-class DirectorBanner {
+class BannerDirector {
    constructor(builder) {
-      if (!builder instanceof BuilderBanner) {
+      if (!builder instanceof BannerBuilder) {
          throw 'new builder object passed';
       }
       this.builder = builder;
@@ -91,8 +91,8 @@ const lowResParams = {
    url: 'http://some-url.com/image/low-res-png',
    resImage: { image: 'Low responsibility image' }
 }
-const lowResBanner = new BuilderLowResBanner(lowResParams);    // 1. constructing Builder
-const firstBanner = new DirectorBanner(lowResBanner);          // 2. constructing Director
+const lowResBanner = new LowResBannerBuilder(lowResParams);    // 1. constructing Builder
+const firstBanner = new BannerDirector(lowResBanner);          // 2. constructing Director
 
 firstBanner.constructBuilder();
 firstBanner.renderBanner();
