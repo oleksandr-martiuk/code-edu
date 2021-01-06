@@ -30,8 +30,8 @@ class GadgetPrototype {
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-const proto = new Gadget('refrigerator', { year: '2009', company: 'HandsomeFri' });
-const prototype = new GadgetPrototype(proto);
+const gadget = new Gadget('refrigerator', { year: '2009', company: 'FreeCorp' });
+const protoGadget = new GadgetPrototype(gadget);
 
-const gadget = prototype.clone();
-console.log(gadget.getDevice());
+const gadgetClone = protoGadget.clone();
+console.log(gadgetClone.getDevice());

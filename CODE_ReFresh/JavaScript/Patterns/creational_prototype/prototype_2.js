@@ -26,8 +26,8 @@ class CustomerPrototype {
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-const proto = new Customer('n/a', 'n/a', 'pending');
-const prototype = new CustomerPrototype(proto);
+const customer = new Customer('n/a', 'n/a', 'pending');
+const prototype = new CustomerPrototype(customer);
 
-const customer = prototype.clone();
-customer.say();
+const customerClone = prototype.clone();
+customerClone.say();
