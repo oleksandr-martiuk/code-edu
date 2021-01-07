@@ -11,6 +11,8 @@ class Shape {
    };
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 class Circle extends Shape {
    constructor(color = null){
       super(color);
@@ -29,6 +31,7 @@ class Triangle extends Shape {
    }
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 class Color {
    constructor() {
@@ -38,6 +41,8 @@ class Color {
       return this.color;
    }
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 class Red extends Color {
    constructor(){
@@ -57,7 +62,7 @@ class Blue extends Color {
    }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 const redColor = new Red();
 const blueColor = new Blue();

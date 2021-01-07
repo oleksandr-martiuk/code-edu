@@ -46,8 +46,7 @@ class UpgradedDrone {
 
 class QAdapter {
    constructor(params) {
-      const { } = params;
-      this.drone = new UpgradedDrone()
+      this.drone = new UpgradedDrone(params);
    }
    calculatePower(material, h, w, wings, engines, controller) {
       const windSpeed = this.drone.getAvgWindSpeed();
