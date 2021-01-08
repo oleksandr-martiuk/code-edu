@@ -10,9 +10,7 @@ class User {
    constructor(name) {
       this.name = name;
    }
-   who() {
-      console.log(`My name is ${this.name}`);
-   }
+   who = () => console.log(`My name is ${this.name}`);
 }
 
 class UserDecorator {
@@ -22,13 +20,11 @@ class UserDecorator {
       this.street = address.street;
       this.house = address.house;
    }
-   who(){
-      console.log(`
-         Hello dear friends!
-         My name is ${this.name}.
-         I live in ${this.city}. On the street: "${this.house}th ${this.street}".
-     `);
-   }
+   who = () => console.log(`
+      Hello dear friends!
+      My name is ${this.name}.
+      I live in ${this.city}. On the street: "${this.house}th ${this.street}".
+  `);
 }
 
 const john = new User('John');

@@ -2,9 +2,7 @@ class User {
    constructor(name) {
       this.name = name;
    }
-   say() {
-      console.log(`User: ${this.name}`);
-   }
+   say = () => console.log(`User: ${this.name}`);
 }
 
 class DecoratedUser {
@@ -15,9 +13,7 @@ class DecoratedUser {
       this.street = address.street;
       this.building = address.building;
    }
-   say() {
-      console.log(`Decorated User: ${this.name} (${this.city}, ${this.street}, ${this.building})`);
-   }
+   say = () => console.log(`Decorated User: ${this.name} (${this.city}, ${this.street}, ${this.building})`);
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
