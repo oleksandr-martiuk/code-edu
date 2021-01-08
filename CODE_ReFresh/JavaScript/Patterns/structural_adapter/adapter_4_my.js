@@ -94,7 +94,7 @@ class ModernCarController {
       console.log('Not possible to turn radio on (engine is not working)');
    }
    getCarState = () => {
-      console.log('The doors is: ', this.lock);
+      console.log('The doors are: ', this.lock);
       console.log('Engine is: ', this.ignition);
       console.log('Radio is on: ', this.radioOn);
       console.log('Lever is on the: ', this.position);
@@ -109,27 +109,27 @@ class CarControllerAdapter extends TargetInterface {
       super();
       this.producer = producer;
       this.model = model;
-      this.carController = new ModernCarController(producer, model);
-      this.carController.lock = true;
-      this.carController.ignition = false;
+      this.modernController = new ModernCarController(producer, model);
+      this.modernController.lock = true;
+      this.modernController.ignition = false;
    }
    lockDoor = () => {
-      if (!this.carController.lock) this.carController.toggleLock();
-      else console.log('The doors is already closed');
+      if (!this.modernController.lock) this.modernController.toggleLock();
+      else console.log('The doors are already closed');
    }
    unlockDoor = () => {
-      if (this.carController.lock) this.carController.toggleLock();
-      else console.log('The doors is already opened');
+      if (this.modernController.lock) this.modernController.toggleLock();
+      else console.log('The doors are already opened');
    }
    turnIgnitionOn = () => {
-      if (!this.carController.ignition) this.carController.pushIgnitionButton();
+      if (!this.modernController.ignition) this.modernController.pushIgnitionButton();
       else console.log('Engine is already fired');
    }
    turnIgnitionOff = () => {
-      if (this.carController.ignition) this.carController.pushIgnitionButton();
+      if (this.modernController.ignition) this.modernController.pushIgnitionButton();
       else console.log('Engine is already turned off');
    }
-
+   // TODO: methods below could be implemented
    // turnStickToDrive = () => ...;
    // turnStickToReverse = () => ...;
    // turnStickToParking = () => ...;

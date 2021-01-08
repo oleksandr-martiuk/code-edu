@@ -7,6 +7,8 @@ class interface_Pages {
    }
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 class About extends interface_Pages { //страница о нас
    constructor(theme) {
       super();
@@ -35,12 +37,16 @@ class Careers extends interface_Pages { // страница карьера
    }
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 // Вспомогательная иерархия (реализация)
 class DarkTheme { // темная тема оформления
    getColor() {
       return 'Dark Black'
    }
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 class LightTheme { // светлая тема
    getColor() {
@@ -54,6 +60,7 @@ class AquaTheme { // голубая тема
    }
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 const darkTheme = new DarkTheme()
 const lightTheme = new LightTheme;
