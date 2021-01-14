@@ -111,6 +111,7 @@ class CultureFacade {
 const m = new FetchMusic();
 
 const music = new CultureFacade(TYPE_TV);
-music.get(2)
+music
+   .get(2)
    .then(data => console.log(data))
    .catch(e => console.error(e));
