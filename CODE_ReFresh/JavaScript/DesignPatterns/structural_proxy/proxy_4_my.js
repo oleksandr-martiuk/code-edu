@@ -19,7 +19,7 @@ myApp.save({ name: 'some commit #1', file: 'Buffer' });
 myApp.save({ name: 'some commit #2', file: 'Buffer' });
 myApp.save({ name: 'some commit #3', file: 'Buffer' });
 
-// ---------------------------------------------------------------------------------------------------------------------
+/** ----------------------------------------------------------------------------------------------------------------- */
 
 class ProxyProject {
    constructor(accountName, appName) {
