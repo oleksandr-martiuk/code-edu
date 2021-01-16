@@ -43,7 +43,7 @@ class MyProxyApi {
 /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 const options = {
-   url: 'https://www.yo55.com/people',
+   url: 'https://www.yoshi155.com/people',
    body: {
       method: 'GET',
       props: { id: 3 }

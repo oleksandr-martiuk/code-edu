@@ -1,11 +1,11 @@
-// interface
+// Interface
 class ComponentWithContextualHelp {
    showHelp() {
       throw new Error('showHelp is not implemented');
    }
 }
 
-// abstract class 'Component'
+// Abstract class 'Component'
 class Component extends ComponentWithContextualHelp {
    constructor() {
       super();
@@ -21,9 +21,9 @@ class Component extends ComponentWithContextualHelp {
    }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-// abstract class 'Container'
+// Abstract class 'Container'
 class Container extends Component {
    constructor() {
       super();
@@ -41,7 +41,7 @@ class Button extends Component {
    }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 class Panel extends Container {
    constructor() {
@@ -63,7 +63,7 @@ class Dialog extends Container {
    }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 const dialog = new Dialog('Budget Reports');
 dialog.wikiPageURL = 'https://...';
@@ -75,7 +75,9 @@ const ok = new Button(250, 760, 20, 50, 'OK');
 ok.tooltipText = 'This is an OK button that...';
 
 const cancel = new Button(320, 760, 50, 20, 'Cancel');
-//.........................................
+
+//....................................................
+
 panel.add(ok);
 panel.add(cancel);
 dialog.add(panel);
