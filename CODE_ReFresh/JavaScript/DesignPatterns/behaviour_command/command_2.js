@@ -10,7 +10,6 @@ class Computer {
 
 // Отправитель, инициатор
 class Invoker {
-   command;
    constructor() {
       console.log('Invoker created')
    }
@@ -114,9 +113,11 @@ let invoker = new Invoker() // передает команду клиента в
 // Вот это все можно обернуть в класс Client (решает что и когда выполнять.)
 invoker.SetCommand(start); // клиент указывает invoker какую команду выполнить
 invoker.command.Execute(); // выполняем команду, глобальная точка доступа (несколько клиентов могут запускать выполнение)
+
 invoker.SetCommand(stop);
 invoker.command.Execute();
 invoker.command.Undo();
+
 invoker.SetCommand(reset);
 invoker.command.Execute();
 invoker.command.Undo();
