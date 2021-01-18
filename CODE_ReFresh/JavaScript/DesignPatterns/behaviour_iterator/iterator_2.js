@@ -16,7 +16,7 @@ class IteratorClass {
          this.collection = Object.values(this.data);
          this.type = 'object';
       } else {
-         throw new Error(`${this.constructor.name} получил data которую не может итерировать - ${typeof data}`)
+         throw new Error(`${this.constructor.name} получил data которую не может итерировать - ${typeof data}`);
       }
    }
 

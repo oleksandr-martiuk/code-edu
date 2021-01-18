@@ -4,16 +4,6 @@ class Invoker {
    }
 }
 
-class SpeakerCommand {
-   constructor(receiver, commandNames) {
-      this.receiver = receiver;
-      this.executeName = commandNames.current || null;
-      this.previousName = commandNames.previous || null;
-   }
-   execute = () => this.executeName ? this.receiver[this.executeName]() : this.receiver.notExist('execute');
-   previous = () => this.previousName ? this.receiver[this.previousName]() : this.receiver.notExist('previous');
-}
-
 class SpeakerReceiver {
    constructor(firstName, surName) {
       this.firstName = firstName || '';
@@ -22,15 +12,26 @@ class SpeakerReceiver {
    prepare = () => console.log(`${this.getFullName()} prepares materials to the event`);
    practice = () => console.log('Training of speech is going...');
    represent = () => console.log(`${this.getFullName()} presents new innovation on current event`);
-   notExist = methodName => console.log(`(!) ${methodName} method does not exist for such command`);
 
    getFullName = () => `${this.firstName} ${this.surName}`;
+}
+
+class SpeakerCommand {
+   constructor(receiver, commandNames) {
+      this.receiver = receiver;
+      this.executeName = commandNames.current || null;
+      this.previousName = commandNames.previous || null;
+   }
+   execute = () => this.receiver[this.executeName]();
+   previous = () => this.receiver[this.previousName]();
 }
 
 class PrepareCommand extends SpeakerCommand {
    constructor(receiver) {
       super(receiver, { current: 'prepare' });
    }
+   // TODO: custom implementation of main method 'previous'
+   previous = () => console.log(`"PrepareCommand" does not have "previous" method`);
 }
 class TrainingCommand extends SpeakerCommand {
    constructor(receiver) {
