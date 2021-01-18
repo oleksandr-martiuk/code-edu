@@ -57,7 +57,7 @@ class Car {
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-const cityParking = new Parking('GreatCity', 5);
+const cityParking = new Parking('GrandCity', 5);
 const countryParking = new Parking('CountryValley', 3);
 
 const vladAudi = new Car('Audi', 'TY7484LK');
