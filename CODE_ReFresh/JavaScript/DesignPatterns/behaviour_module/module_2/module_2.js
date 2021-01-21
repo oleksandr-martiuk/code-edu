@@ -18,4 +18,4 @@ const first_Module = (function() {
 
 first_Module.declare_Nickname();
 
-// console.log(Surname); // а вот тут уже нет доступа
+// console.log(Surname); // we don't have access for the property 'Surname'
