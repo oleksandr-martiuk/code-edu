@@ -5,22 +5,29 @@ class MobileScreen {
    }
    turnPowerOn() {
       this.powerOn = true;
-   }
-   notify(msg) {
-      const notification = {
-         powerOn: this.powerOn,
-         screenOn: this.screenOn
-      };
-      console.log(`${msg}: ${notification}`);
+      this.notify('turnPowerOn: ');
    }
    touch() {
-      if (!this.turnPowerOn) return;
+      if (!this.powerOn) {
+         this.notify(`touch (doesn't have power): `);
+         return;
+      }
       if (!this.screenOn) this.screenOn = true;
       this.notify('touch');
    }
    swipe() {
-      if (!this.powerOn || !this.screenOn) return;
-      this.notify('swipe');
+      if (!this.powerOn || !this.screenOn) {
+         this.notify(`swipe (doesn't not work): `);
+         return;
+      }
+      this.notify(`swipe (works): `);
+   }
+   notify(msg) {
+      const notification = {
+         power: this.powerOn,
+         screen: this.screenOn
+      };
+      console.log(`${msg}: `, notification);
    }
 }
 

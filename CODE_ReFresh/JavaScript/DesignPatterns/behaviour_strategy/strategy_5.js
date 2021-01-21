@@ -73,11 +73,11 @@ class Ken extends Fighter {
    display = () => console.log("Ken");
 }
 
-class ChunLi extends Fighter {
+class MoriLee extends Fighter {
    constructor(kickBehavior, jumpBehavior) {
       super(kickBehavior, jumpBehavior);
    }
-   display = () => console.log("ChunLi");
+   display = () => console.log("MoriLee");
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

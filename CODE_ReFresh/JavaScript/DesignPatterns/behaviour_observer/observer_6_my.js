@@ -14,7 +14,7 @@ class Subject {
       try {
          this.check(subscriber);
          if (this.isExist(subscriber)) {
-            throw new Error(`Observer  ${subscriber.type}:${subscriber.name} is already exist`);
+            throw new Error(`Observer  ${subscriber.type}:${subscriber.name} is already exists`);
          }
 
          this.observers.push(subscriber);

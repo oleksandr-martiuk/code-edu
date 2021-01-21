@@ -5,11 +5,11 @@ class OrderStatus {
    }
    next() {
       console.log(this.nextStatus)
-      return new this.nextStatus();
+      return new this.nextStatus;
    }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+//-----------------------------------------------
 
 class Payment extends OrderStatus {
    constructor() {
@@ -29,7 +29,7 @@ class Delivered extends OrderStatus {
    }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+//-----------------------------------------------
 
 class Order {
    constructor() {
@@ -39,13 +39,13 @@ class Order {
       this.state = this.state.next();
    }
    cancelOrder() {
-      this.state.name === 'waitingForPayment' ? console.log('Order is canceled') : console.log('Ordered can not be canceled');
+      this.state.name === 'waitingForPayment' ? console.log('Order is canceled') : console.log(`Order can't be canceled`);
    }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-const myOrder = new Order;
+const myOrder = new Order();
 
 myOrder.state.next();
 myOrder.cancelOrder();

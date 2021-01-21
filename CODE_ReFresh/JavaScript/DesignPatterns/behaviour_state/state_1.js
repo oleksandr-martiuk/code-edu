@@ -4,6 +4,7 @@ class Light {
   }
 }
 
+
 class RedLight extends Light {
   constructor() {
     super('red')
@@ -24,6 +25,8 @@ class GreenLight extends Light {
   }
   sign = () => 'Go...'
 }
+
+//-------------------------------
 
 class TrafficLight {
   constructor() {
@@ -51,7 +54,7 @@ class TrafficLight {
   }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 const traffic = new TrafficLight()
 

@@ -45,9 +45,9 @@ class Person {
 
 const hfMagazine = new Magazine('Hunting & Fishing');
 
-const Tom = new Person('Tom Jonson', 'Kiev, Mishkina str., 19', 'Received. Thank you! :|');
-const Sony = new Person('Sony Simon', 'Kharkiv, Servernaya str., 2', 'Nothing special. :/ as usual...');
-const Jim = new Person('Jim Novak', 'Odessa, E.Googlina str., 76', 'Wow! I like your magazine :)');
+const Tom = new Person('Tom Jonson', 'Kiev, Polytechnic Str., 19', 'Received. Thank you! :|');
+const Sony = new Person('Sony Simon', 'Kharkiv, Academica Lebedeva Str., 2', 'Nothing special. :/ as usual...');
+const Jim = new Person('Jim Novak', 'Odessa, Friendly str., 76', 'Wow! I like your magazine :)');
 
 hfMagazine.subscribe(Tom);
 hfMagazine.subscribe(Jim);

@@ -7,7 +7,7 @@ class Vehicle {
   }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+//--------------------------
 
 class Bus extends Vehicle {
   constructor() {
@@ -26,6 +26,8 @@ class Car extends Vehicle {
     super(3);
   }
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 class Commute {
   travel(transport) {
