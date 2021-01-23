@@ -1,57 +1,43 @@
 class Visitor {
    accept(operation) {
       const methodName = `visit${this.constructor.name}`;
-      if (!operation[methodName]) {
-         throw new Error(`${methodName} is not acceptable`);
-      }
+      if (!operation[methodName]) throw new Error(`${methodName} is not acceptable`);
       operation[methodName](this);
    }
 }
+
+//-----------------------------------------------------------------------------------
 
 class Person extends Visitor {
    constructor(name) {
       super();
       this.name = name;
    }
-   getName(){
-      console.log(`My name is ${this.name}`);
-   }
+   getName = () => console.log(`My name is ${this.name}`);
 }
+
+//-----------------------------------------------------------------------------------
 
 class Man extends Person {
-   repairCar(){
-      console.log(`${this.name} is repairing his Ford`);
-   }
+   repairCar = () => console.log(`${this.name} is repairing his Ford`);
 }
 class Woman extends Person {
-   cookDinner(){
-      console.log(`${this.name} is cooking Borsch for the dinner`);
-   }
+   cookDinner = () => console.log(`${this.name} is cooking Borsch for the dinner`);
 }
 
+//-----------------------------------------------------------------------------------
+
 class VisitorDoes extends Visitor {
-   visitMan(he){
-      he.repairCar();
-   }
-   visitWoman(she){
-      she.cookDinner();
-   }
+   visitMan = he => he.repairCar();
+   visitWoman = she => she.cookDinner();
 }
 class VisitorRun extends Visitor {
-   visitMan(person){
-      console.log(`${person.name} is running very fast`)
-   }
-   visitWoman(person){
-      console.log(`${person.name} is already tired. But she looks very well! :)`)
-   }
+   visitMan = person => console.log(`${person.name} is running very fast`)
+   visitWoman = person => console.log(`${person.name} is already tired. But she looks very well! :)`)
 }
 class VisitorDance extends Visitor {
-   visitMan(person){
-      console.log(`${person.name} is dancing as an elephant ;)`)
-   }
-   visitWoman(person){
-      console.log(`Oh I like ${person.name}'s movements! )`)
-   }
+   visitMan = person => console.log(`${person.name} is dancing as an elephant ;)`)
+   visitWoman = person => console.log(`Oh I like ${person.name}'s movements! )`)
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
