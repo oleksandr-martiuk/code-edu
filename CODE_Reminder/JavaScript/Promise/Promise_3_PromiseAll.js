@@ -8,17 +8,16 @@ function PromiseAll (promises) {
         let counter = 0;
 
         for (const [i, promise] of promises.entries()) {
-            promise.
-                then(result => {
+            promise
+                .then(result => {
                     resultAcc[i] = result;
                     counter++;
                     if (counter >= promises.length) {
                         const response = Object.values(resultAcc);
-                        resolve(response);
+                        return resolve(response);
                     }
-                }).catch(err => {
-                    reject(err);
-                });
+                })
+                .catch(err => reject(err));
         }
     })
 }
@@ -39,7 +38,7 @@ console.log('before');
 
 PromiseAll(promise_1)
     .then(result => console.log(result))
-    .catch(e => console.log(e));
+    .catch(err => console.log('ERROR: ', err.message));
 
 PromiseAll(firstPackage)
     .then(pResults => console.log('Promise #1: ', pResults))
