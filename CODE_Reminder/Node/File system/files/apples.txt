@@ -1,0 +1,8 @@
+This is text file with some list of fruits:
+1. apples
+2. oranges
+3. bananas
+4. pineapples
+5. sausages (oh, this is not a fruit - it is vegetable)
+6. melon
+7. peach

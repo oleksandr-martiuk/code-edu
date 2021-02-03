@@ -1,4 +1,4 @@
-function doit (cb) {
+function doIt (cb) {
     return new Promise(resolve => {
         setTimeout(() => {
             cb();
@@ -7,11 +7,11 @@ function doit (cb) {
     });
 }
 
-const p1 = doit(() => console.log('1'));
-const p2 = doit(() => console.log('2'));
-const p3 = doit(() => console.log('3'));
-const p4 = doit(() => console.log('4'));
-const p5 = doit(() => console.log('5'));
+const p1 = doIt(() => console.log('1'));
+const p2 = doIt(() => console.log('2'));
+const p3 = doIt(() => console.log('3'));
+const p4 = doIt(() => console.log('4'));
+const p5 = doIt(() => console.log('5'));
 
 new Promise(resolve => {
     // 1-st variant
