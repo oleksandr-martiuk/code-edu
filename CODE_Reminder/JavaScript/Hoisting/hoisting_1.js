@@ -35,5 +35,3 @@ expression(); // ReferenceError: Cannot access 'expression' before initializatio
 const expression = function() {
    console.log('Will this work?');
 };
-
-/** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
