@@ -1,0 +1,12 @@
+.recipes {
+   font-size: medium;
+   padding: 0 30px;
+}
+
+.ingredient {
+   color: #0e90d2;
+}
+
+.instruction {
+   color: darkgreen;
+}
