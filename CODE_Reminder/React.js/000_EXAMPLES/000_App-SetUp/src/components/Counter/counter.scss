@@ -1,0 +1,13 @@
+@import "../../styles/styles";
+
+button {
+   cursor: pointer;
+   margin: 5px;
+
+   &.redBtn {
+      background-color: $red;
+   }
+   &.greenBtn {
+      background-color: $green;
+   }
+}
