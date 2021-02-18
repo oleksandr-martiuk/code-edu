@@ -3,8 +3,8 @@ function makeArmy() {
 
     let i = 0;
     while (i < 10) {
-        let shooter = (function(y) {            // функция shooter
-            return () => console.log( y );      // должна выводить порядковый номер
+        let shooter = (function(y) {
+            return () => console.log( y );
         })(i);
         shooters.push(shooter);
         i++;

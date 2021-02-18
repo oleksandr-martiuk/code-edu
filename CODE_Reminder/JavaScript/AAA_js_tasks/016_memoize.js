@@ -15,6 +15,14 @@ const memoize = fn => {
    }
 }
 
+const addPerson = (firstName, lastName, years) => {
+   console.time(lastName);
+   const result = getMemoPerson(firstName, lastName, years);
+   console.timeEnd(lastName);
+   console.log(result);
+   console.log('-------------------');
+}
+
 //--------------------------------------------------------------
 
 const getPerson = (fName, sName, age) => {
@@ -28,35 +36,10 @@ const getPerson = (fName, sName, age) => {
 
 const getMemoPerson = memoize(getPerson);
 
-console.time('Sidorov');
-const res_1 = getMemoPerson('Igor', 'Sidorov', 43);
-console.timeEnd('Sidorov');
-console.log(res_1);
+//----------------------------------------------------------------------------------------------------------------------
 
-console.log('-------------------------------------------');
-
-console.time('Chichikova');
-const res_2 = getMemoPerson('Olga', 'Chichikova', 25);
-console.timeEnd('Chichikova');
-console.log(res_2);
-
-console.log('-------------------------------------------');
-
-console.time('Bogarev');
-const res_3 = getMemoPerson('Vlad', 'Bogarev', 68);
-console.timeEnd('Bogarev');
-console.log(res_3);
-
-console.log('-------------------------------------------');
-
-console.time('> Sidorov');
-const res_4 = getMemoPerson('Igor', 'Sidorov', 43);
-console.timeEnd('> Sidorov');
-console.log(res_4);
-
-console.log('-------------------------------------------');
-
-console.time('Sivuhina');
-const res_5 = getMemoPerson('Tamara', 'Sivuhina', 12);
-console.timeEnd('Sivuhina');
-console.log(res_5);
+addPerson('Igor', 'Suvorov', 43);
+addPerson('Olga', 'Chichis', 25);
+addPerson('Vlad', 'Bogart', 68);
+addPerson('Igor', 'Suvorov', 43);
+addPerson('Tamara', 'Silvina', 12);

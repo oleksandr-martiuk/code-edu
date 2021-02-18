@@ -1,8 +1,8 @@
 const isThreePassed = (...args) => {
-    const lastIndx = args.length - 1;
+    const lastIndex = args.length - 1;
 
-    const el = args[lastIndx];
-    const currArr = args.splice(0, lastIndx);
+    const el = args[lastIndex];
+    const currArr = args.splice(0, lastIndex);
     console.log(args);
 
     return currArr.indexOf(el) !== -1;

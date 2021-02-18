@@ -7,8 +7,9 @@ const result = nums.reduce((acc, value, index) => {
 }, 1000)
 
 console.table(debug);
-console.log(result);
-console.log('-----------------------------------------------');
+console.log(result + '\n');
+
+//--------------------------------------------------------------------------
 
 const debug2 = [];
 const result2 = nums.reduce((acc, value, index) => {
@@ -17,4 +18,7 @@ const result2 = nums.reduce((acc, value, index) => {
 })
 
 console.table(debug2);
-console.log(result2);
+console.log(result2 + '\n');
+
+//--------------------------------------------------------------------------
+

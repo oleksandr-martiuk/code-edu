@@ -11,5 +11,5 @@ const army = (() => {
     return shooters;
 })();
 
-army[0]();
-army[5]();
+army[0]();      // 0
+army[5]();      // 5

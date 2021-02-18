@@ -5,4 +5,4 @@ const map = new Object();
 map[foo] = "foo";
 map[bar] = "bar";
 
-console.log(map[foo]);  // what will this display??
+console.log(map[foo]);  // what is the result will be shown?

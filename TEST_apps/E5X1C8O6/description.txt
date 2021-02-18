@@ -1,0 +1,49 @@
+1. focus on:
+    > problem-solving
+    > algorithms
+    > coding
+    > data structures
+2. given a problem to solve
+    > talk about your approach
+    > (!) discuss the complexity
+    > write your code using:
+        > Google Docs
+        > Draw.io (for presenting diagrams)
+
+*. ADVISE:
+    > talk through your solution
+    > explain any trade-offs you are making between time and memory
+    > ask any questions you need to clarify the question (as sometimes they can purposely under-specified)
+    > check your code for simple bugs and syntax issues
+
+----------------------------------------------------------------------------------------------------------
+
+COULD BE POSSIBLE TO GET SUCH QUESTIONS:
+
+> JS:
+    > closure
+    > carrying
+    > sort
+    > Promises (task: Promise.all?)
+    > recursion
+
+> BACK-END:
+    > SQL vs NoSQL
+    > Node:
+        > child process
+        > threads
+        > EventLoop (micro-tasks && macro-tasks)
+        > Streams
+
+> FRONT-END:
+    > DOM
+    > ServerSide rendering
+    > preprocessors?
+    > React:
+        > Virtual-DOM
+        > Life-Cycle
+    > HTML:
+        > <video/>
+    > CSS:
+        > position
+        > flex-box
