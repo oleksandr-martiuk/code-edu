@@ -1,3 +1,5 @@
+Theory questions:
+
 1. focus on:
     > problem-solving
     > algorithms
