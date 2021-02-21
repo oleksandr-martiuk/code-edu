@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 export const Timer = () => {
    const [currentCount, setCount] = useState(10);
+   console.log('render Timer')
 
    const timer = () => {
       setCount(currentCount - 1);
@@ -10,9 +11,10 @@ export const Timer = () => {
    useEffect(() => {
       if (currentCount <= 0) return;
       const id = setInterval(timer, 1000);
-      console.log('useEffect: ', { id });
       return () => clearInterval(id);
    }, [currentCount]);
 
-   return <div>{currentCount}</div>;
+   return <div>
+      <strong>Timer</strong>: {currentCount}
+   </div>;
 }
