@@ -110,13 +110,13 @@ async function api(sha) {
 async function getData(item) {
    const data = await api(item.sha);
    const treeItem = data.tree.find(item => (item.type === 'tree'));
-   if (treeItem) treeItem.tree = await getData(treeItem);
+   if (treeItem) treeItem.tree = (await getData(treeItem))?.tree;
    return data;
 }
 
 async function launchTest() {
    const data = await getData({ sha: '9fb037999f264ba9a7fc6274d15fa3ae2ab98312' });
-   // assert.deepStrictEqual(data, dataForCheck); // TODO: uncomment test
+   assert.deepStrictEqual(data, dataForCheck); // TODO: uncomment test
    return data;
 }
 
