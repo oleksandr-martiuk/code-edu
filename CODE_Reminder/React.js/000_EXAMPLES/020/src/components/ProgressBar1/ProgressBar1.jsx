@@ -1,23 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
-const getColor = name => ({ '#0088d0': '#0069a0', '#0069a0': '#0088d0' }[name]);
+// ProgressBar By setInterval
 
-export const ProgressBar = () => {
+export const ProgressBar1 = () => {
    const [progress, setProgress] = useState(0);
-   const [color, setColor] = useState('#0088d0');
 
    useEffect(() => {
       if (progress < 100) {
-         setTimeout(() => {
+         const id = setInterval(() => {
+            clearInterval(id);
             setProgress(progress + 1);
-            setColor(getColor(color));
          }, 50)
       }
    }, [progress])
 
    return (<div style={{ width: '50%' }}>
       <div style={{
-         backgroundColor: color,
+         backgroundColor: '#0088d0',
          height: '10px',
          width: progress + '%',
       }}/>

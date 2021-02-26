@@ -12,6 +12,6 @@ export function App({title}) {
       <People/><hr/>
       {/*Recursion: <A index={0}/>*/}
       <Clock/><hr/>
-      <ProgressBar/><hr/>
+      {/*<ProgressBar/><hr/>*/}
    </div>
 }
