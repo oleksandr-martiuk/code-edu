@@ -1,0 +1,18 @@
+{
+   "people": [
+      {
+         "id": 6,
+         "fName": "Mat",
+         "sName": "Damon",
+         "age": 31,
+         "occupation": "Mechanic"
+      },
+      {
+         "id": 7,
+         "fName": "Bill",
+         "sName": "Peterson",
+         "age": 26,
+         "occupation": "Plumber"
+      }
+   ]
+}
