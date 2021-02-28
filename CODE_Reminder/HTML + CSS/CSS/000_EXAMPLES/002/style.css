@@ -1,0 +1,28 @@
+body {
+   background-color: #1b1b1b;
+   text-align: justify;
+}
+
+.text-header {
+   color: whitesmoke;
+   /*background-color: #5bc0de;*/
+   text-align: center;
+}
+
+.text-block {
+   padding: 5px 10px;
+   margin: 5px 0;
+   border: 1px solid #ee5f5b;
+   border-radius: 5px;
+   color: whitesmoke;
+}
+
+.image-block {
+   height: 320px;
+   width: 100%;
+   background-image: url('https://live.staticflickr.com/65535/50985682102_e526430370_n.jpg');
+}
+
+.test1 {
+   font-size: 150%;
+}

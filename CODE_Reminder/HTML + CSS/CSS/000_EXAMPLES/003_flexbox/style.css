@@ -1,0 +1,35 @@
+.container {
+   width: 700px;
+   height: 700px;
+   /*height: 100%;*/
+   background-color: gainsboro;
+
+   display: flex;
+   align-items: center;             /* vertical alignment */
+   justify-content: space-around;   /* distance between elements */
+   flex-direction: row-reverse;     /* set direction for flex items */
+
+   flex-wrap: wrap;                 /* multiline */
+   align-content: space-between;    /* multiline: vertical alignment */
+}
+
+.block {
+   width: 100px;
+   height: 100px;
+}
+
+.tomato {
+   background-color: tomato;
+}
+
+.sky {
+   background-color: #0e90d2;
+}
+
+.green {
+   background-color: #46a546;
+}
+
+.pink {
+   background-color: hotpink;
+}
