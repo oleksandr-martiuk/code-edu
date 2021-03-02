@@ -6,7 +6,7 @@ const Tour = ({ tour= {}, order }) => {
 
    return <div className={`container ${best} tour-item`}>
       <div className={`order`}>{order}. </div>
-      <div className={`special-offer`}>{tour?.isSpecialOffer ? "special offer" : ""}</div>
+      <div className={`special-offer`}>{tour?.superOffer ? "special offer" : ""}</div>
       <div className={`price`}>{tour?.currency} {tour?.price}</div>
       <div className={`title`}>{tour?.title}</div>
       <div className={`rating`}>{tour?.rating}</div>

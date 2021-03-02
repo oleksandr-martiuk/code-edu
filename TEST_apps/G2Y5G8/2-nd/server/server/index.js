@@ -10,4 +10,4 @@ app.use(cors());
 app.use('/', routes);
 app.use(errorHandler);
 
-app.listen(port, () => console.log(`Demo server listening on port ${port}!`));
+app.listen(port, () => console.log(`server is listening on port ${port}!`));
