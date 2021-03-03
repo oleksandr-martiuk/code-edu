@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 const SearchBar = ({ sendReq }) => {
    const [search, setSearch] = useState('');
@@ -15,7 +15,7 @@ const SearchBar = ({ sendReq }) => {
    return (<div className={'container search-bar'}>
       <div>
          <label>Search: <input type="text" onChange={handleInputChange} value={search}/></label>
-         <button onClick={handleClick}>Search</button>
+         <button onClick={handleClick}>Find</button>
       </div>
       <div>
 

@@ -1,10 +1,10 @@
-const Tour = ({ tour= {}, order }) => {
-   let best = null;
-   if (+tour?.rating > 4.5) {
-      best = 'best_tour';
-   }
+const Tour = ({ tour= {
+   superOffer: false,
+   rating: undefined
+}, order }) => {
+   const best_tour = (+tour?.rating > 4) ? 'best_tour' : '';
 
-   return <div className={`container ${best} tour-item`}>
+   return <div className={`container ${best_tour} tour-item`}>
       <div className={`order`}>{order}. </div>
       <div className={`special-offer`}>{tour?.superOffer ? "special offer" : ""}</div>
       <div className={`price`}>{tour?.currency} {tour?.price}</div>
