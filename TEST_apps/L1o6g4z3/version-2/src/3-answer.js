@@ -7,10 +7,11 @@
  * Please answer the questions below.
  */
 
-const getData = () =>
-   new Promise((resolve) =>
-      setTimeout(() => resolve(Math.random() * 5), Math.random() * 2000)
-   );
+const getData = () => {
+  return new Promise((resolve) =>
+     setTimeout(() => resolve(Math.random() * 5), Math.random() * 2000)
+  );
+}
 
 const fetchThrottledData = async () => {
   const arrOfData = [];
