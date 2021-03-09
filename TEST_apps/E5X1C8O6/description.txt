@@ -1,4 +1,19 @@
-Theory questions:
+src
+components
+App
+Currency
+styles
+index.html
+index.js
+.babelrc
+.gitignore
+.prettierrc
+.travis.yml
+package.json
+package-lock.json
+README.md
+sandbox.config.json
+webpack.config.jsTheory questions:
 
 1. focus on:
     > problem-solving
