@@ -3,3 +3,12 @@
 h1 {
    color: $blue;
 }
+
+.FancyBorder {
+   border: 1px dashed grey;
+   padding: 0 25px;
+}
+
+.FancyBorder-blue {
+   color: #0095d5;
+}
