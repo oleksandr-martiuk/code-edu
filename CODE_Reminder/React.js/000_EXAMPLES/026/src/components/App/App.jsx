@@ -6,6 +6,7 @@ import Temperature from "../Temperature/Temperature";
 import './app.scss';
 import WelcomeDialog from "../WelcomeDialog/WelcomeDialog";
 import Compute from "../Compute/Compute";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 export function App({title}) {
    return <div>
@@ -13,6 +14,7 @@ export function App({title}) {
       <MultipleInputs/><hr/>
       <Temperature/>
       <WelcomeDialog/>
-      { <Compute/> }
+      <Compute/>
+      <ProgressBar/>
    </div>
 }
