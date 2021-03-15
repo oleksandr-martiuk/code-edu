@@ -10,6 +10,6 @@ export function App({title}) {
       <h1>{title}</h1>
       <AutoFocusTextInput/><hr/>
       <TextInputWithFocusButton/><hr/>
-      <CustomTextInput2/><br/>
+      <CustomTextInput2/><hr/>
    </div>
 }
